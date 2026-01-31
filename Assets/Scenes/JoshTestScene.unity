@@ -789,6 +789,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 1219485423375095559, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1475945855436441883, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
