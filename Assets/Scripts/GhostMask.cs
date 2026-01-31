@@ -6,13 +6,14 @@ public class GhostMask : MonoBehaviour
 {
     public enum MaskType
     {
+        None,
         Standard,
         Fish
     }
 
     [SerializeField]
     private MaskType mask;
-    public MaskType Mask
+    virtual public MaskType Mask
     {
         get
         {
@@ -31,7 +32,16 @@ public class GhostMask : MonoBehaviour
 
     private void SetMaskSprite(MaskType newMask)
     {
-        GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>($"Sprites/Ghost/Ghost_Mask_{newMask}");
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        if (newMask == MaskType.None)
+        {
+            spriteRenderer.enabled = false;
+        }
+        else
+        {
+            spriteRenderer.enabled = true;
+            spriteRenderer.sprite = Resources.Load<Sprite>($"Sprites/Ghost/Ghost_Mask_{newMask}");
+        }
     }
 
     private void Start()
