@@ -55,7 +55,7 @@ public class GuestBehavior : MonoBehaviour
         // Use actual movement speed
         float speed = agent.velocity.magnitude;
 
-        if (speed > 0.05f && !pointAndClick.isTalking)
+        if (speed > 0.05f && (!pointAndClick.isTalking || pointAndClick.isTalkingTo != gameObject))
         {
             if (agent.velocity.x > 0)
             {
@@ -172,6 +172,7 @@ public class GuestBehavior : MonoBehaviour
             return;
         }
         pointAndClick.isTalking = true;
+        pointAndClick.isTalkingTo = this;
         StopCoroutine(WalkCoroutine);
         if (player.transform.position.x > transform.position.x)
         {

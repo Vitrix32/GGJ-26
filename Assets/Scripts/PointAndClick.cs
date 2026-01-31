@@ -12,6 +12,8 @@ public class PointAndClick : MonoBehaviour
 
     public SpriteRenderer spriteRenderer;
 
+    public GuestBehavior isTalkingTo;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
