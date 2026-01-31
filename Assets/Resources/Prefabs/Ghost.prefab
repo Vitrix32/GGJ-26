@@ -117,6 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4646003447568641324}
   - component: {fileID: 5222363959525919741}
+  - component: {fileID: 5167581884754962557}
   m_Layer: 0
   m_Name: MaskSprite
   m_TagString: Untagged
@@ -191,6 +192,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5167581884754962557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5540337692666666132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c98945bb9ccc8941a4804684e3ba7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mask: 0
 --- !u!1 &8445856195849919033
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +234,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.43, y: 0.03047087, z: 0.013954638}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5961765127477234816}
