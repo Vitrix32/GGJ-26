@@ -27,7 +27,7 @@ public class GuestBehavior : MonoBehaviour
     public float bobAmplitude = 0.05f;
     public float bobFrequency = 8f;
     public float idleReturnSpeed = 12f;
-
+    
     private Vector3 startLocalPos;
     private float bobTimer;
 
@@ -190,6 +190,25 @@ public class GuestBehavior : MonoBehaviour
         }
         var camera = GameObject.Find("DialoguePopup");
         camera.GetComponent<DialogueOptionsController>().fadeIn();
+        DialogueFetcher.DialogueEntry dialogueEntry = new DialogueFetcher.DialogueEntry();
+        dialogueEntry.ghost_lines = new string[] {
+            "It's dangerous to go alone! Take this!"
+        };
+        dialogueEntry.responses = new DialogueFetcher.Response[] {
+            new DialogueFetcher.Response {
+                text = "You received the Master Sword!",
+                rewardedKeys = new int[] { 1 }
+            },
+            new DialogueFetcher.Response {
+                text = "I'm not Link...",
+                rewardedKeys = new int[] { }
+            },
+            new DialogueFetcher.Response {
+                text = "(Just ignore the ghost)",
+                rewardedKeys = new int[] { }
+            }
+        };
+        camera.GetComponent<DialogueOptionsController>().setupDialogue(dialogueEntry);
         camera.GetComponent<DialogueOptionsController>().dialogueFinished += ReturnFromTalking;
     }
 
