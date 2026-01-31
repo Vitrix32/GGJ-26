@@ -40,7 +40,7 @@ public class PointAndClick : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && !isTalking && !EventSystem.current.IsPointerOverGameObject())
+        if (Input.GetMouseButtonDown(0) && !isTalking && EventSystem.current.IsPointerOverGameObject())
         {
             Vector3 clickLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             clickLoc.z = 0;
