@@ -32,8 +32,22 @@ public class DialogueFetcher : MonoBehaviour
         public DialogueEntry[] dialogues;
     }
 
+    public static DialogueFetcher Instance {get; private set;}
 
-    
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+ 
     [SerializeField]
     private TextAsset jsonFile;
     private DialogueData dialogueData;
@@ -42,12 +56,14 @@ public class DialogueFetcher : MonoBehaviour
 
     private void Start()
     {
-       dialogueData = JsonUtility.FromJson<DialogueData>(jsonFile.text); 
+       dialogueData = JsonUtility.FromJson<DialogueData>(jsonFile.text);
+       unlockedKeys = new HashSet<int>();
     }
 
     public DialogueEntry FetchDialogue(Ghost.GhostName ghostName)
     {
-        GhostMask.MaskType playerMask = GameObject.FindWithTag("Player").GetComponent<GhostMask>().Mask;
+        Debug.Log($"Fetching for Ghost: {ghostName}");
+        GhostMask.MaskType playerMask = GameObject.FindWithTag("Player").GetComponentInChildren<GhostMask>().Mask;
 
         DialogueEntry selectedEntry = null;
         foreach (DialogueEntry entry in dialogueData.dialogues)
@@ -55,15 +71,18 @@ public class DialogueFetcher : MonoBehaviour
             // if this is a dialogue option for a different character, skip it
             if (entry.ghostName != ghostName.ToString())
             {
+                Debug.Log("Wrong Ghost");
                 continue;
             }
             // if you're not wearing the right mask, skip it
             if (!entry.prereqs.valid_masks.Contains(playerMask.ToString())) {
+                Debug.Log("Wrong Mask");
                 continue;
             }
             // if there are any prereq keys that you don't have, skip it.
             if (entry.prereqs.keys.Except(unlockedKeys).Any())
             {
+                Debug.Log("Wrong Keys");
                 continue;
             }
             if (selectedEntry is null || entry.dialogueIndex > selectedEntry.dialogueIndex)
