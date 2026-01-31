@@ -1155,7 +1155,7 @@ MonoBehaviour:
     thanks to Dr Landon!
 
 
-    Josn 8:36
+    John 8:36
 
     So if the Son sets you free, you will
     be free indeed.'
@@ -2597,8 +2597,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 100
-  startY: -1000
-  endY: 800
+  startY: -1400
+  endY: 1250
 --- !u!114 &1634744765
 MonoBehaviour:
   m_ObjectHideFlags: 0
