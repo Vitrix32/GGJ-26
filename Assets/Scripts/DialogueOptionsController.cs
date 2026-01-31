@@ -31,7 +31,7 @@ public class DialogueOptionsController : MonoBehaviour
     ScrollView dialogueList;
     
     public event Action dialogueFinished;
-    int dialogueIndex = 0;
+    int dialogueIndex = -1;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +46,7 @@ public class DialogueOptionsController : MonoBehaviour
         GroupBox optionsList = root.Q<GroupBox>("QuestionHoldBox");
         optionsList.Clear();
         CreateDialogueOptions(dialogueEntry.responses);
-        dialogueIndex = 0;
+        dialogueIndex = -1;
         testDialogue.Clear();
         var dialogueBox = root.Q<GroupBox>("MiddleBox").Q<TemplateContainer>();
         dialogueBox.RemoveFromHierarchy();
@@ -148,10 +148,21 @@ public class DialogueOptionsController : MonoBehaviour
             dialogueBox.style.height = Screen.height * 0.7f;
         });
         var dialogueLabel = dialogueBox.Q<Label>("Dialogue");
-        dialogueLabel.text = testDialogue[dialogueIndex].text;
+        
         root.Q<GroupBox>("MiddleBox").Insert(0, dialogueBox);
         dialogueBox.Q<Button>("ScrollUp").clicked += ScrollUp;
         dialogueBox.Q<Button>("ScrollDown").clicked += ScrollDown;
+        StartCoroutine(DialogueScroll());
+        
+
+    }
+    private IEnumerator DialogueScroll() {
+        root.SetEnabled(false);
+        while (dialogueIndex < testDialogue.Count-1) {
+        var dialogueLabel = root.Q<Label>("Dialogue");
+        dialogueIndex += 1;
+        dialogueLabel.text = testDialogue[dialogueIndex].text;
+        //dialogueLabel.MarkDirtyRepaint();
         if (testDialogue[dialogueIndex].justification == 0)
             {
                 dialogueLabel.style.unityTextAlign = TextAnchor.MiddleLeft;
@@ -160,14 +171,17 @@ public class DialogueOptionsController : MonoBehaviour
             {
                 dialogueLabel.style.unityTextAlign = TextAnchor.MiddleRight;
             }
-
+        yield return new WaitForSeconds(3f);
+        
+        }
+        root.SetEnabled(true);
     }
 
     void ScrollUp()
     {
         if (dialogueIndex > 0)
         {
-            dialogueIndex--;
+            dialogueIndex = dialogueIndex - 1;
             var dialogueBox = root.Q<GroupBox>("MiddleBox").Q<TemplateContainer>();
             var dialogueLabel = dialogueBox.Q<Label>("Dialogue");
             dialogueLabel.text = testDialogue[dialogueIndex].text;
@@ -186,7 +200,7 @@ public class DialogueOptionsController : MonoBehaviour
     {
         if (dialogueIndex < testDialogue.Count - 1)
         {
-            dialogueIndex++;
+            dialogueIndex = dialogueIndex + 1;
             var dialogueBox = root.Q<GroupBox>("MiddleBox").Q<TemplateContainer>();
             var dialogueLabel = dialogueBox.Q<Label>("Dialogue");
             dialogueLabel.text = testDialogue[dialogueIndex].text;
