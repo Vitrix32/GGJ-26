@@ -15,9 +15,10 @@ public class RandomTalk : MonoBehaviour
 
     public IEnumerator Talk()
     {
+        yield return new WaitForSeconds(Random.Range(0f, 5f));
         while (dialogueOptions.Count > 0)
         {
-            yield return new WaitForSeconds(Random.Range(1f, 2f));
+            yield return new WaitForSeconds(Random.Range(5f, 10f));
             int rand = Random.Range(0, dialogueOptions.Count);
             string newDialogue = dialogueOptions[rand];
             int i = 0;
