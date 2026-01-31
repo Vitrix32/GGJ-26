@@ -152,7 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd836a300371ddb42ba5a4c2e6b9dcdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDistance: 3
+  affinity: []
+  moveDistance: 5
   spriteTransform: {fileID: 5961765127477234816}
   bobAmplitude: 0.05
   bobFrequency: 8
