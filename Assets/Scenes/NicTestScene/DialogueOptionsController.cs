@@ -8,6 +8,15 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.UIElements.Experimental;
 
+public class Dialogue {
+    public string text;
+    public int justification; //0 = left (ghost) 1 = right (player)
+    public Dialogue(string t, int j)
+    {
+        text = t;
+        justification = j;
+    }
+}
 public class DialogueOptionsController : MonoBehaviour
 {
     [SerializeField] UIDocument dialogueComponent;
@@ -15,8 +24,9 @@ public class DialogueOptionsController : MonoBehaviour
 
     [SerializeField] VisualTreeAsset dialogueBoxTemplate;
 
-    List<String> testDialogue = new List<string>{"Hello World!", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."};
+    List<Dialogue> testDialogue = new List<Dialogue>{new Dialogue("Hello World!", 0), new Dialogue("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", 1)};
 
+    DialogueFetcher dialogueFetcher;
     VisualElement root;
     ScrollView dialogueList;
     
@@ -27,15 +37,29 @@ public class DialogueOptionsController : MonoBehaviour
     {
         root = dialogueComponent.rootVisualElement;
         root.style.opacity = 0;
-        dialogueList = root.Q<ScrollView>("ScrollView");
-        CreateDialogueOptions(3);
         CreateDialogueBox();
-        addDialogueText("But when, as the seasons revolved, the year came in which the gods had ordained that he should return home to Ithaca, not even there was he free from toils, even among his own folk. And all the gods pitied him [20] save Poseidon; but he continued to rage unceasingly against godlike Odysseus until at length he reached his own land. Howbeit Poseidon had gone among the far-off Ethiopians—the Ethiopians who dwell sundered in twain, the farthermost of men, some where Hyperion sets and some where he rises, [25] there to receive a hecatomb of bulls and rams, and there he was taking his joy, sitting at the feast; but the other gods were gathered together in the halls of Olympian Zeus. ");
+    }
+
+
+    public void setupDialogue(DialogueFetcher.DialogueEntry dialogueEntry)
+    {
+        GroupBox optionsList = root.Q<GroupBox>("QuestionHoldBox");
+        optionsList.Clear();
+        CreateDialogueOptions(dialogueEntry.responses);
+        dialogueIndex = 0;
+        testDialogue.Clear();
+        var dialogueBox = root.Q<GroupBox>("MiddleBox").Q<TemplateContainer>();
+        dialogueBox.RemoveFromHierarchy();
+        for (int i = 0; i < dialogueEntry.ghost_lines.Length; i++)
+        {
+            Dialogue newDialogue = new Dialogue(dialogueEntry.ghost_lines[i], 0);
+            testDialogue.Add(newDialogue);
+        }
+        CreateDialogueBox();
     }
 
     public void fadeIn()
     {
-       
         root.experimental.animation.Start(
         new StyleValues
         {
@@ -69,36 +93,47 @@ public class DialogueOptionsController : MonoBehaviour
         1000);
         dialogueFinished?.Invoke();
         root.SetEnabled(false);    }
-    void addDialogueText(string text)
+
+    void addDialogueText(Dialogue text)
     {
         testDialogue.Add(text);
         var dialogueBox = root.Q<GroupBox>("MiddleBox").Q<TemplateContainer>();
         var dialogueLabel = dialogueBox.Q<Label>("Dialogue");
         dialogueIndex = testDialogue.Count - 1;
-        dialogueLabel.text = testDialogue[dialogueIndex];
+        dialogueLabel.text = text.text;
+        if (text.justification == 0)
+        {
+            dialogueLabel.style.unityTextAlign = TextAnchor.MiddleLeft;
+        }
+        else
+        {
+            dialogueLabel.style.unityTextAlign = TextAnchor.MiddleRight;
+        }
 
     }
-    void CreateDialogueOptions(int numOptions)
+    void CreateDialogueOptions(DialogueFetcher.Response[] responses)
     {
         GroupBox optionsList = root.Q<GroupBox>("QuestionHoldBox");
-        for (int i = 0; i < numOptions; i++)
+        for (int i = 0; i < responses.Length; i++)
         {
             TemplateContainer option = dialogueOptionTemplate.Instantiate();
             var optionText = option.Q<Button>("Question1");
-            optionText.text = "What is your favorite ice cream?";
-            optionText.clicked += () => EvaluateDialogueOption(optionText.text);
+            optionText.text = responses[i].text;
+            DialogueFetcher.Response capturedResponse = responses[i];
+            optionText.clicked += () => EvaluateDialogueOption(capturedResponse);
             optionsList.Add(option);
         }
        
     }
 
-    void EvaluateDialogueOption(string dialogue)
+    void EvaluateDialogueOption(DialogueFetcher.Response response)
     {
-        StartCoroutine(DialogueOptionCoroutine(dialogue));
+        StartCoroutine(DialogueOptionCoroutine(response));
     }
 
-    private IEnumerator DialogueOptionCoroutine(string dialogue)
+    private IEnumerator DialogueOptionCoroutine(DialogueFetcher.Response response)
     {
+        addDialogueText(new Dialogue(response.text, 1));
         yield return new WaitForSeconds(1f);
         fadeOut();
     }
@@ -107,10 +142,18 @@ public class DialogueOptionsController : MonoBehaviour
     {
         TemplateContainer dialogueBox = dialogueBoxTemplate.Instantiate();
         var dialogueLabel = dialogueBox.Q<Label>("Dialogue");
-        dialogueLabel.text = testDialogue[dialogueIndex];
+        dialogueLabel.text = testDialogue[dialogueIndex].text;
         root.Q<GroupBox>("MiddleBox").Insert(0, dialogueBox);
         dialogueBox.Q<Button>("ScrollUp").clicked += ScrollUp;
         dialogueBox.Q<Button>("ScrollDown").clicked += ScrollDown;
+        if (testDialogue[dialogueIndex].justification == 0)
+            {
+                dialogueLabel.style.unityTextAlign = TextAnchor.MiddleLeft;
+            }
+            else
+            {
+                dialogueLabel.style.unityTextAlign = TextAnchor.MiddleRight;
+            }
 
     }
 
@@ -121,7 +164,15 @@ public class DialogueOptionsController : MonoBehaviour
             dialogueIndex--;
             var dialogueBox = root.Q<GroupBox>("MiddleBox").Q<TemplateContainer>();
             var dialogueLabel = dialogueBox.Q<Label>("Dialogue");
-            dialogueLabel.text = testDialogue[dialogueIndex];
+            dialogueLabel.text = testDialogue[dialogueIndex].text;
+            if (testDialogue[dialogueIndex].justification == 0)
+            {
+                dialogueLabel.style.unityTextAlign = TextAnchor.MiddleLeft;
+            }
+            else
+            {
+                dialogueLabel.style.unityTextAlign = TextAnchor.MiddleRight;
+            }
         }
     }
 
@@ -132,7 +183,15 @@ public class DialogueOptionsController : MonoBehaviour
             dialogueIndex++;
             var dialogueBox = root.Q<GroupBox>("MiddleBox").Q<TemplateContainer>();
             var dialogueLabel = dialogueBox.Q<Label>("Dialogue");
-            dialogueLabel.text = testDialogue[dialogueIndex];
+            dialogueLabel.text = testDialogue[dialogueIndex].text;
+            if (testDialogue[dialogueIndex].justification == 0)
+            {
+                dialogueLabel.style.unityTextAlign = TextAnchor.MiddleLeft;
+            }
+            else
+            {
+                dialogueLabel.style.unityTextAlign = TextAnchor.MiddleRight;
+            }
         }
     }
 
