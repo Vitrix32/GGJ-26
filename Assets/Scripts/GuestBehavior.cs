@@ -166,6 +166,7 @@ public class GuestBehavior : MonoBehaviour
 
     private void OnMouseDown()
     {
+        agent.SetDestination(transform.position);
         if (pointAndClick.isTalking)
         {
             return;
