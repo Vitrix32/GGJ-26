@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.UIElements.Experimental;
 
 public class DialogueOptionsController : MonoBehaviour
 {
@@ -19,18 +20,64 @@ public class DialogueOptionsController : MonoBehaviour
     VisualElement root;
     ScrollView dialogueList;
     
+    public event Action dialogueFinished;
     int dialogueIndex = 0;
     // Start is called before the first frame update
     void Start()
     {
         root = dialogueComponent.rootVisualElement;
+        root.style.opacity = 0;
         dialogueList = root.Q<ScrollView>("ScrollView");
         CreateDialogueOptions(3);
         CreateDialogueBox();
-        testDialogue.Add("But when, as the seasons revolved, the year came in which the gods had ordained that he should return home to Ithaca, not even there was he free from toils, even among his own folk. And all the gods pitied him [20] save Poseidon; but he continued to rage unceasingly against godlike Odysseus until at length he reached his own land. Howbeit Poseidon had gone among the far-off Ethiopians—the Ethiopians who dwell sundered in twain, the farthermost of men, some where Hyperion sets and some where he rises, [25] there to receive a hecatomb of bulls and rams, and there he was taking his joy, sitting at the feast; but the other gods were gathered together in the halls of Olympian Zeus. ");
+        addDialogueText("But when, as the seasons revolved, the year came in which the gods had ordained that he should return home to Ithaca, not even there was he free from toils, even among his own folk. And all the gods pitied him [20] save Poseidon; but he continued to rage unceasingly against godlike Odysseus until at length he reached his own land. Howbeit Poseidon had gone among the far-off Ethiopians—the Ethiopians who dwell sundered in twain, the farthermost of men, some where Hyperion sets and some where he rises, [25] there to receive a hecatomb of bulls and rams, and there he was taking his joy, sitting at the feast; but the other gods were gathered together in the halls of Olympian Zeus. ");
     }
 
+    public void fadeIn()
+    {
+       
+        root.experimental.animation.Start(
+        new StyleValues
+        {
+            //left = -500,
+            opacity = 0
+        },
+        new StyleValues
+        {
+            //left = 0,
+            opacity = 1
+        },
+        3000);
 
+        root.SetEnabled(true); 
+    }
+
+    public void fadeOut()
+    {
+        root.style.opacity = 1;
+        root.experimental.animation.Start(
+        new StyleValues
+        {
+            //left = -500,
+            opacity = 1
+        },
+        new StyleValues
+        {
+            //left = 0,
+            opacity = 0
+        },
+        1000);
+        dialogueFinished?.Invoke();
+        root.SetEnabled(false);    }
+    void addDialogueText(string text)
+    {
+        testDialogue.Add(text);
+        var dialogueBox = root.Q<GroupBox>("MiddleBox").Q<TemplateContainer>();
+        var dialogueLabel = dialogueBox.Q<Label>("Dialogue");
+        dialogueIndex = testDialogue.Count - 1;
+        dialogueLabel.text = testDialogue[dialogueIndex];
+
+    }
     void CreateDialogueOptions(int numOptions)
     {
         GroupBox optionsList = root.Q<GroupBox>("QuestionHoldBox");
@@ -39,9 +86,21 @@ public class DialogueOptionsController : MonoBehaviour
             TemplateContainer option = dialogueOptionTemplate.Instantiate();
             var optionText = option.Q<Button>("Question1");
             optionText.text = "What is your favorite ice cream?";
+            optionText.clicked += () => EvaluateDialogueOption(optionText.text);
             optionsList.Add(option);
         }
        
+    }
+
+    void EvaluateDialogueOption(string dialogue)
+    {
+        StartCoroutine(DialogueOptionCoroutine(dialogue));
+    }
+
+    private IEnumerator DialogueOptionCoroutine(string dialogue)
+    {
+        yield return new WaitForSeconds(1f);
+        fadeOut();
     }
 
     void CreateDialogueBox()

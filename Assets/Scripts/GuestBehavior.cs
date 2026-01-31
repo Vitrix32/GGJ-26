@@ -188,6 +188,9 @@ public class GuestBehavior : MonoBehaviour
             maskRenderer.flipX = false;
             pointAndClick.spriteRenderer.flipX = true;
         }
+        var camera = GameObject.Find("DialoguePopup");
+        camera.GetComponent<DialogueOptionsController>().fadeIn();
+        camera.GetComponent<DialogueOptionsController>().dialogueFinished += ReturnFromTalking;
     }
 
     public void ReturnFromTalking()
