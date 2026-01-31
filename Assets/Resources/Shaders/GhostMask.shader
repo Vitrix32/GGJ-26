@@ -1,23 +1,19 @@
-Shader "Unlit/Ghost"
+Shader "Unlit/GhostMask"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _WarpIntensity ("Warp Intensity", Float) = 1.0
-        _WarpSpeed ("Warp Speed", Float) = 1.0
-        [HDR] _GlowColor ("Glow Color", Color) = (1, 1, 1, 1)
+        _WaveSpeed ("Wave Speed", Float) = 1.0
+        _WaveIntensity ("Wave Intensity", Float) = 1.0
     }
     SubShader
     {
-        Tags { "RenderType"="Transparent" "Queue"="Transparent" }
+        Tags { "RenderType"="Opaque" }
         LOD 100
 
         Pass
         {
             Cull Off
-            Lighting Off
-            ZWrite Off
-            Blend SrcAlpha OneMinusSrcAlpha
 
             CGPROGRAM
             #pragma vertex vert
@@ -38,9 +34,8 @@ Shader "Unlit/Ghost"
             };
 
             sampler2D _MainTex;
-            float _WarpIntensity;
-            float _WarpSpeed;
-            float4 _GlowColor;
+            float _WaveSpeed;
+            float _WaveIntensity;
 
             v2f vert (appdata v)
             {
@@ -54,10 +49,9 @@ Shader "Unlit/Ghost"
             {
                 // sample the texture
                 float2 warpeduv = i.uv;
-                warpeduv.x = i.uv.x + _WarpIntensity * sin(10 * i.uv.y + _Time.y * _WarpSpeed);
+                warpeduv.x = i.uv.x + _WaveIntensity * sin(_Time.y * _WaveSpeed);
                 float4 col = tex2D(_MainTex, warpeduv);
-                col.a = min(col.a, i.uv.y * i.uv.y);
-                col.rgb += _GlowColor.rgb;
+                clip(col.a - 0.1);
                 return col;
             }
             ENDCG
