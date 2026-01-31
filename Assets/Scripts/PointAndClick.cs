@@ -14,11 +14,13 @@ public class PointAndClick : MonoBehaviour
         agent.updateUpAxis = false;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            agent.SetDestination(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            Vector3 clickLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            clickLoc.z = 0;
+            agent.SetDestination(clickLoc);
         }
     }
 }
