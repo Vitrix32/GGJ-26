@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class PointAndClick : MonoBehaviour
 {
     NavMeshAgent agent;
+    [SerializeField] private Animator animator;
 
     private void Start()
     {
@@ -21,6 +22,15 @@ public class PointAndClick : MonoBehaviour
             Vector3 clickLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             clickLoc.z = 0;
             agent.SetDestination(clickLoc);
+        }
+
+        if (agent.remainingDistance > 0)
+        {
+            animator.SetBool("isMoving", true);
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
         }
     }
 }
