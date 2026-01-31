@@ -20,6 +20,8 @@ public class GuestBehavior : MonoBehaviour
     NavMeshAgent agent;
 
     public Transform spriteTransform;
+    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer maskRenderer;
 
     [Header("Bob Settings")]
     public float bobAmplitude = 0.05f;
@@ -29,14 +31,23 @@ public class GuestBehavior : MonoBehaviour
     private Vector3 startLocalPos;
     private float bobTimer;
 
+    private GameObject player;
+    private PointAndClick pointAndClick;
+
+    private Coroutine WalkCoroutine;
+
     void Start()
     {
+        player = GameObject.Find("MainCharacter");
+        pointAndClick = player.GetComponent<PointAndClick>();
+
         startLocalPos = spriteTransform.localPosition;
+        spriteRenderer = spriteTransform.gameObject.GetComponent<SpriteRenderer>();
 
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-        StartCoroutine(RandomlyWalk());
+        WalkCoroutine = StartCoroutine(RandomlyWalk());
     }
 
     void Update()
@@ -46,6 +57,16 @@ public class GuestBehavior : MonoBehaviour
 
         if (speed > 0.05f)
         {
+            if (agent.velocity.x > 0)
+            {
+                spriteRenderer.flipX = true;
+                maskRenderer.flipX = true;
+            } else
+            {
+                spriteRenderer.flipX = false;
+                maskRenderer.flipX = false;
+            }
+
             bobTimer += Time.deltaTime * speed;
             float bobOffset =
                 Mathf.Sin(bobTimer * bobFrequency) *
@@ -141,5 +162,33 @@ public class GuestBehavior : MonoBehaviour
 
             yield return new WaitForSeconds(Random.Range(2f, 5f));
         }
+    }
+
+    private void OnMouseDown()
+    {
+        if (pointAndClick.isTalking)
+        {
+            return;
+        }
+        pointAndClick.isTalking = true;
+        StopCoroutine(WalkCoroutine);
+        if (player.transform.position.x > transform.position.x)
+        {
+            pointAndClick.SetWalkPosition(transform.position + new Vector3(1f,0,0));
+            spriteRenderer.flipX = true;
+            maskRenderer.flipX = true;
+        }
+        else
+        {
+            pointAndClick.SetWalkPosition(transform.position + new Vector3(-1f, 0, 0));
+            spriteRenderer.flipX = false;
+            maskRenderer.flipX = false;
+        }
+    }
+
+    public void ReturnFromTalking()
+    {
+        pointAndClick.isTalking = false;
+        WalkCoroutine = StartCoroutine(RandomlyWalk());
     }
 }

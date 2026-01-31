@@ -8,6 +8,8 @@ public class PointAndClick : MonoBehaviour
     NavMeshAgent agent;
     [SerializeField] private Animator animator;
 
+    public bool isTalking = false;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -17,7 +19,7 @@ public class PointAndClick : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !isTalking)
         {
             Vector3 clickLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             clickLoc.z = 0;
@@ -32,5 +34,10 @@ public class PointAndClick : MonoBehaviour
         {
             animator.SetBool("isMoving", false);
         }
+    }
+
+    public void SetWalkPosition(Vector3 loc)
+    {
+        agent.SetDestination(loc);
     }
 }
