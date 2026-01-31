@@ -30,7 +30,6 @@ public class MaskController : MonoBehaviour
         MaskButtons[4].onClick.AddListener(delegate { swapMasks(4); });
         MaskButtons[5].onClick.AddListener(delegate { swapMasks(5); });
         MaskButtons[6].onClick.AddListener(delegate { swapMasks(6); });
-        MaskButtons[7].onClick.AddListener(delegate { swapMasks(7); });
     }
 
     private void swapMasks(int maskNum)

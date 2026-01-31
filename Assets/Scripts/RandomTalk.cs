@@ -8,9 +8,10 @@ public class RandomTalk : MonoBehaviour
 
     public TMPro.TextMeshProUGUI textBox;
 
+    private Coroutine talk;
+
     private void Start()
     {
-        StartCoroutine(Talk());
         textBox.gameObject.SetActive(false);
     }
 
@@ -39,5 +40,17 @@ public class RandomTalk : MonoBehaviour
             textBox.gameObject.SetActive(false);
         }
         yield return null;
+    }
+
+    public void StopRandomTalking()
+    {
+        StopCoroutine(talk);
+        textBox.text = "";
+        textBox.gameObject.SetActive(false);
+    }
+
+    public void StartRandomTalking()
+    {
+        talk = StartCoroutine(Talk());
     }
 }

@@ -36,8 +36,13 @@ public class GuestBehavior : MonoBehaviour
 
     private Coroutine WalkCoroutine;
 
+    private RandomTalk randomTalk;
+
     void Start()
     {
+        randomTalk = gameObject.GetComponent<RandomTalk>();
+        randomTalk.StartRandomTalking();
+
         player = GameObject.Find("MainCharacter");
         pointAndClick = player.GetComponent<PointAndClick>();
 
@@ -166,6 +171,7 @@ public class GuestBehavior : MonoBehaviour
 
     private void OnMouseDown()
     {
+        randomTalk.StopRandomTalking();
         agent.SetDestination(transform.position);
         if (pointAndClick.isTalking)
         {
@@ -188,6 +194,16 @@ public class GuestBehavior : MonoBehaviour
             maskRenderer.flipX = false;
             pointAndClick.spriteRenderer.flipX = true;
         }
+
+        StartCoroutine(startTalk());
+    }
+
+    public IEnumerator startTalk()
+    {
+        while (Vector3.Distance(player.transform.position, transform.position) > 3)
+        {
+            yield return null;
+        }
         var camera = GameObject.Find("DialoguePopup");
         camera.GetComponent<DialogueOptionsController>().fadeIn();
         var dialogueEntry = DialogueFetcher.Instance.FetchDialogue(GetComponent<Ghost>().Name);
@@ -199,5 +215,6 @@ public class GuestBehavior : MonoBehaviour
     {
         pointAndClick.isTalking = false;
         WalkCoroutine = StartCoroutine(RandomlyWalk());
+        randomTalk.StartRandomTalking();
     }
 }
