@@ -10,7 +10,9 @@ public class GhostMask : MonoBehaviour
         Standard,
         Fish,
         Horns,
-        Lion
+        Lion,
+        Peacock,
+        Deer
     }
 
     [SerializeField]
@@ -37,7 +39,7 @@ public class GhostMask : MonoBehaviour
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         if (newMask == MaskType.None)
         {
-            spriteRenderer.enabled = false;
+            //spriteRenderer.enabled = false;
         }
         else
         {

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public class PointAndClick : MonoBehaviour
 {
@@ -39,7 +40,7 @@ public class PointAndClick : MonoBehaviour
             }
         }
 
-            if (Input.GetMouseButtonDown(0) && !isTalking)
+        if (Input.GetMouseButtonDown(0) && !isTalking && !EventSystem.current.IsPointerOverGameObject())
         {
             Vector3 clickLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             clickLoc.z = 0;
