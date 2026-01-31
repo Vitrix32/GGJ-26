@@ -11,6 +11,7 @@ public class RandomTalk : MonoBehaviour
     private void Start()
     {
         StartCoroutine(Talk());
+        textBox.gameObject.SetActive(false);
     }
 
     public IEnumerator Talk()
@@ -22,6 +23,7 @@ public class RandomTalk : MonoBehaviour
             int rand = Random.Range(0, dialogueOptions.Count);
             string newDialogue = dialogueOptions[rand];
             int i = 0;
+            textBox.gameObject.SetActive(true);
             while (i < newDialogue.Length)
             {
                 textBox.text += newDialogue[i];
@@ -34,6 +36,7 @@ public class RandomTalk : MonoBehaviour
             }
             yield return new WaitForSeconds(5f);
             textBox.text = "";
+            textBox.gameObject.SetActive(false);
         }
         yield return null;
     }
