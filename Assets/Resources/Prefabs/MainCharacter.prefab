@@ -49,6 +49,7 @@ MonoBehaviour:
   animator: {fileID: 8827534983120173886}
   isTalking: 0
   spriteRenderer: {fileID: 5949073772806770338}
+  maskSpriteRenderer: {fileID: 2840457377323451263}
   isTalkingTo: {fileID: 0}
 --- !u!195 &8327664434455637631
 NavMeshAgent:
@@ -146,7 +147,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9a089695510f85646b6dc95589086bb7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

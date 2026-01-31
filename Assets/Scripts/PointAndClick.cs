@@ -11,6 +11,7 @@ public class PointAndClick : MonoBehaviour
     public bool isTalking = false;
 
     public SpriteRenderer spriteRenderer;
+    public SpriteRenderer maskSpriteRenderer;
 
     public GuestBehavior isTalkingTo;
 
@@ -29,10 +30,12 @@ public class PointAndClick : MonoBehaviour
             if (agent.velocity.x > 0)
             {
                 spriteRenderer.flipX = true;
+                maskSpriteRenderer.flipX = true;
             }
             else
             {
                 spriteRenderer.flipX = false;
+                maskSpriteRenderer.flipX = false;
             }
         }
 

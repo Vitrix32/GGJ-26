@@ -8,7 +8,9 @@ public class GhostMask : MonoBehaviour
     {
         None,
         Standard,
-        Fish
+        Fish,
+        Horns,
+        Lion
     }
 
     [SerializeField]
