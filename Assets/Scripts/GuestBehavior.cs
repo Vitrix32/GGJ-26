@@ -55,7 +55,7 @@ public class GuestBehavior : MonoBehaviour
         // Use actual movement speed
         float speed = agent.velocity.magnitude;
 
-        if (speed > 0.05f)
+        if (speed > 0.05f && !pointAndClick.isTalking)
         {
             if (agent.velocity.x > 0)
             {
