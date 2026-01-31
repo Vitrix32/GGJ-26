@@ -177,12 +177,14 @@ public class GuestBehavior : MonoBehaviour
             pointAndClick.SetWalkPosition(transform.position + new Vector3(1f,0,0));
             spriteRenderer.flipX = true;
             maskRenderer.flipX = true;
+            pointAndClick.spriteRenderer.flipX = false;
         }
         else
         {
             pointAndClick.SetWalkPosition(transform.position + new Vector3(-1f, 0, 0));
             spriteRenderer.flipX = false;
             maskRenderer.flipX = false;
+            pointAndClick.spriteRenderer.flipX = true;
         }
     }
 

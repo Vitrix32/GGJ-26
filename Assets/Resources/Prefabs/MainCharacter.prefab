@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8827534983120173886}
+  isTalking: 0
+  spriteRenderer: {fileID: 5949073772806770338}
 --- !u!195 &8327664434455637631
 NavMeshAgent:
   m_ObjectHideFlags: 0

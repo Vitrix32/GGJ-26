@@ -10,6 +10,8 @@ public class PointAndClick : MonoBehaviour
 
     public bool isTalking = false;
 
+    public SpriteRenderer spriteRenderer;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -19,7 +21,20 @@ public class PointAndClick : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isTalking)
+        float speed = agent.velocity.magnitude;
+        if (speed > 0.05f && !isTalking)
+        {
+            if (agent.velocity.x > 0)
+            {
+                spriteRenderer.flipX = true;
+            }
+            else
+            {
+                spriteRenderer.flipX = false;
+            }
+        }
+
+            if (Input.GetMouseButtonDown(0) && !isTalking)
         {
             Vector3 clickLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             clickLoc.z = 0;
