@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="false" name="GhostCard" style="background-image: resource(&apos;Sprites/Ghost/Claire_card&apos;); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); background-color: rgba(188, 188, 188, 0); -unity-background-scale-mode: scale-to-fit; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; height: 80%; flex-grow: 2;" />
+</ui:UXML>

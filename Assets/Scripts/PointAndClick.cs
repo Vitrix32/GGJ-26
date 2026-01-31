@@ -40,6 +40,20 @@ public class PointAndClick : MonoBehaviour
             }
         }
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            // Check if the pointer is NOT over a UI object
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                Debug.Log("Clicked on the game world, not UI!");
+                // Add your game world interaction code here
+            }
+            else
+            {
+                Debug.Log("Clicked on a UI element!");
+            }
+        }
+
         if (Input.GetMouseButtonDown(0) && !isTalking && EventSystem.current.IsPointerOverGameObject())
         {
             Vector3 clickLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition);
