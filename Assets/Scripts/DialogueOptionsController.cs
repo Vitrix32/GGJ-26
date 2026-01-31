@@ -141,6 +141,12 @@ public class DialogueOptionsController : MonoBehaviour
     void CreateDialogueBox()
     {
         TemplateContainer dialogueBox = dialogueBoxTemplate.Instantiate();
+        //dialogueBox.flexGrow = 7;
+        dialogueBox.style.height = Screen.height * 0.7f; // 70% of screen height
+        // Update on screen resize
+        root.RegisterCallback<GeometryChangedEvent>(evt => {
+            dialogueBox.style.height = Screen.height * 0.7f;
+        });
         var dialogueLabel = dialogueBox.Q<Label>("Dialogue");
         dialogueLabel.text = testDialogue[dialogueIndex].text;
         root.Q<GroupBox>("MiddleBox").Insert(0, dialogueBox);
