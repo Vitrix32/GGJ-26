@@ -1,0 +1,17 @@
+{
+  "dialogues": [
+    {
+      "dialogueIndex": 0,
+      "ghostName": "Eugene",
+      "prereqs": {
+        "valid_masks": ["None", "Normal", "Fish"],
+        "keys": []
+      },
+      "ghost_lines": ["Hi I'm a ghost", "Who are you?"],
+      "responses": [
+        { "text": "Answer A", "rewardedKeys": [0] },
+        { "text": "Answer B", "rewardedKeys": [1] }
+      ]
+    }
+  ]
+}
