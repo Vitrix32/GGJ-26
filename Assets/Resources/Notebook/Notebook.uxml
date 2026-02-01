@@ -11,5 +11,6 @@
             <ui:Instance template="GhostCard" name="GhostCard" />
             <ui:Instance template="GhostCard" name="GhostCard" style="-unity-background-scale-mode: scale-to-fit; min-height: auto; height: 80%; flex-grow: 1;" />
         </ui:GroupBox>
+        <ui:Button text="Go Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Close" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/Scenes/NicTestScene/EduNSWACTHandPre-VariableFont_wght%20SDF.asset?fileID=11400000&amp;guid=e2b486e9a16b15e4da6ddbd3ea484ac4&amp;type=2#EduNSWACTHandPre-VariableFont_wght SDF&quot;); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
     </ui:VisualElement>
 </ui:UXML>
