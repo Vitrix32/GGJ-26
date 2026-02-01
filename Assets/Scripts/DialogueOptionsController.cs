@@ -77,6 +77,7 @@ public class DialogueOptionsController : MonoBehaviour
     public void fadeOut()
     {
         root.style.opacity = 1;
+        root.SetEnabled(false); 
         root.experimental.animation.Start(
         new StyleValues
         {
@@ -88,10 +89,12 @@ public class DialogueOptionsController : MonoBehaviour
             //left = 0,
             opacity = 0
         },
-        1000);
-        dialogueFinished?.Invoke();
-        root.style.display = DisplayStyle.None;
-        root.SetEnabled(false);    }
+        1000).OnCompleted(() => {
+            dialogueFinished?.Invoke();
+            root.style.display = DisplayStyle.None;
+            
+        });
+           }
 
     void addDialogueText(Dialogue text)
     {
@@ -99,16 +102,7 @@ public class DialogueOptionsController : MonoBehaviour
         var dialogueBox = root.Q<GroupBox>("MiddleBox").Q<TemplateContainer>();
         var dialogueLabel = dialogueBox.Q<Label>("Dialogue");
         dialogueIndex = testDialogue.Count - 1;
-        dialogueLabel.text = text.text;
-        if (text.justification == 0)
-        {
-            dialogueLabel.style.unityTextAlign = TextAnchor.MiddleLeft;
-        }
-        else
-        {
-            dialogueLabel.style.unityTextAlign = TextAnchor.MiddleRight;
-        }
-
+        StartCoroutine(DialogueTalk(testDialogue[dialogueIndex].text));
     }
     void CreateDialogueOptions(int dialogueIndex, DialogueFetcher.ResponseField[] responses)
     {
@@ -138,7 +132,6 @@ public class DialogueOptionsController : MonoBehaviour
 
     private IEnumerator DialogueOptionCoroutine(int dialogueIndex, DialogueFetcher.ResponseField response)
     {
-        addDialogueText(new Dialogue(response.text, 1));
         yield return new WaitForSeconds(1f);
         DialogueFetcher.Dialogue newDialogue = DialogueFetcher.Instance.GetFollowUpDialogue(dialogueIndex, response.responseIndex);
         addDialogueText(new Dialogue(newDialogue.text, 0));
@@ -150,10 +143,10 @@ public class DialogueOptionsController : MonoBehaviour
         TemplateContainer dialogueBox = dialogueBoxTemplate.Instantiate();
         //dialogueBox.flexGrow = 7;
         print("There is a dialog box being made here >:()");
-        dialogueBox.style.height = Screen.height * 0.7f; // 70% of screen height
+        dialogueBox.style.height = Screen.height * 0.4f; // 70% of screen height
         // Update on screen resize
         root.RegisterCallback<GeometryChangedEvent>(evt => {
-            dialogueBox.style.height = Screen.height * 0.7f;
+            dialogueBox.style.height = Screen.height * 0.4f;
         });
         var dialogueLabel = dialogueBox.Q<Label>("Dialogue");
         
@@ -170,19 +163,29 @@ public class DialogueOptionsController : MonoBehaviour
         var dialogueLabel = root.Q<Label>("Dialogue");
         print(dialogueIndex);
         dialogueIndex += 1;
-        dialogueLabel.text = testDialogue[dialogueIndex].text;
+        yield return StartCoroutine(DialogueTalk(testDialogue[dialogueIndex].text));
         //dialogueLabel.MarkDirtyRepaint();
-        if (testDialogue[dialogueIndex].justification == 0)
-            {
-                dialogueLabel.style.unityTextAlign = TextAnchor.MiddleLeft;
-            }
-            else
-            {
-                dialogueLabel.style.unityTextAlign = TextAnchor.MiddleRight;
-            }
         yield return new WaitForSeconds(3f);
         
         }
+        root.SetEnabled(true);
+    }
+
+    private IEnumerator DialogueTalk(string newDialogue) {
+        int i = 0;
+        var dialogueLabel = root.Q<Label>("Dialogue");
+        dialogueLabel.text = "";
+        root.SetEnabled(false);
+        while (i < newDialogue.Length)
+            {
+                dialogueLabel.text += newDialogue[i];
+                i++;
+                yield return new WaitForSeconds(0.07f);
+                if (char.IsPunctuation(newDialogue[i - 1]))
+                {
+                    yield return new WaitForSeconds(.13f);
+                }
+            }
         root.SetEnabled(true);
     }
 
@@ -193,15 +196,7 @@ public class DialogueOptionsController : MonoBehaviour
             dialogueIndex = dialogueIndex - 1;
             var dialogueBox = root.Q<GroupBox>("MiddleBox").Q<TemplateContainer>();
             var dialogueLabel = dialogueBox.Q<Label>("Dialogue");
-            dialogueLabel.text = testDialogue[dialogueIndex].text;
-            if (testDialogue[dialogueIndex].justification == 0)
-            {
-                dialogueLabel.style.unityTextAlign = TextAnchor.MiddleLeft;
-            }
-            else
-            {
-                dialogueLabel.style.unityTextAlign = TextAnchor.MiddleRight;
-            }
+            StartCoroutine(DialogueTalk(testDialogue[dialogueIndex].text));
         }
     }
 
@@ -212,15 +207,7 @@ public class DialogueOptionsController : MonoBehaviour
             dialogueIndex = dialogueIndex + 1;
             var dialogueBox = root.Q<GroupBox>("MiddleBox").Q<TemplateContainer>();
             var dialogueLabel = dialogueBox.Q<Label>("Dialogue");
-            dialogueLabel.text = testDialogue[dialogueIndex].text;
-            if (testDialogue[dialogueIndex].justification == 0)
-            {
-                dialogueLabel.style.unityTextAlign = TextAnchor.MiddleLeft;
-            }
-            else
-            {
-                dialogueLabel.style.unityTextAlign = TextAnchor.MiddleRight;
-            }
+            StartCoroutine(DialogueTalk(testDialogue[dialogueIndex].text));
         }
     }
 }
