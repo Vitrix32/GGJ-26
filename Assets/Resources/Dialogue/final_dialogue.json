@@ -1,11 +1,11 @@
 {
     "root_nodes": {
         "Eugene": {
-            "None": -1,
+            "None": 45,
             "Claire": 35,
-            "Mark": -1,
+            "Mark": 40,
             "Amanda": -1,
-            "Tilda": -1,
+            "Tilda": 42,
             "Ed": -1
         },
         "Claire": {
@@ -411,6 +411,185 @@
             "index": 34,
             "text": "Okay, fine. My dad has not been the same since he fell out with Eugene. I guess he never expected his own son-in-law to run against him in such a public way. Is this my fault?",
             "reward_keys": [0, 6],
+            "responses": []
+        },
+        {
+            "index": 35,
+            "text": "What do you need, darling?",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "I need a drink!",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 36
+                },
+                {
+                    "text": "I wanted to talk to you about Dad.",
+                    "reveal_keys": [103],
+                    "clear_keys": [],
+                    "follow_up_index": 37
+                }
+            ]
+        },
+        {
+            "index": 36,
+            "text": "Saaame!",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 37,
+            "text": "What did that old buzzard put you up to?",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "He wanted to talk to you, to apologize.",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 38
+                }
+            ]
+        },
+        {
+            "index": 38,
+            "text": "Really? He wants to apologize?",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "He realized that he was at fault for the whole misunderstanding and he wants to make it right.",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 39
+                }
+            ]
+        },
+        {
+            "index": 39,
+            "text": "Well, if it'll make you happy, I'll talk to him.",
+            "reward_keys": [104],
+            "responses": []
+        },
+        {
+            "index": 40,
+            "text": "Just leave already.",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "I can show you how to leave... Leave public office!",
+                    "reveal_keys": [0, 6],
+                    "clear_keys": [],
+                    "follow_up_index": 41
+                }
+            ]
+        },
+        {
+            "index": 41,
+            "text": "Why you little...!",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 42,
+            "text": "Do you need something, auntie?",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "That song I heard you singing at the docks, what was it?",
+                    "reveal_keys": [7],
+                    "clear_keys": [],
+                    "follow_up_index": 43
+                }
+            ]
+        },
+        {
+            "index": 43,
+            "text": "Probably just some sailing song. I sing them a lot when I work on my nets.",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "But you were talking about how you loved some other lass on the shore.",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 44
+                }
+            ]
+        },
+        {
+            "index": 44,
+            "text": "Oh that? It musta been 'Maid on the Shore' It's just a good song to keep your mind busy while your hands are workin'.",
+            "reward_keys": [8],
+            "responses": []
+        },
+        {
+            "index": 45,
+            "text": "Can I help you with something?",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "Uhh, can you?",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 46
+                },
+                {
+                    "text": "I heard you ran for mayor?",
+                    "reveal_keys": [0],
+                    "clear_keys": [],
+                    "follow_up_index": 49
+                }
+            ]
+        },
+        {
+            "index": 46,
+            "text": "I could!",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "You could?",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 47
+                }
+            ]
+        },
+        {
+            "index": 47,
+            "text": "Yeah.",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "Yeah?",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 48
+                }
+            ]
+        },
+        {
+            "index": 48,
+            "text": "You don't have anything do you?",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 49,
+            "text": "I did, not that I much wanted the job... too much time in an office, not enough time on the waters.",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "Then why did you run?",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 50
+                }
+
+            ]
+        },
+        {
+            "index": 50,
+            "text": "Purely to take the mick outta Mark, I guess. Don't need much of a reason to go against that buffoon.",
+            "reward_keys": [6],
             "responses": []
         }
     ]
