@@ -4,9 +4,9 @@
             "None": 45,
             "Claire": 35,
             "Mark": 40,
-            "Amanda": -1,
+            "Amanda": 3,
             "Tilda": 42,
-            "Ed": -1
+            "Ed": 3
         },
         "Claire": {
             "None": 19,
@@ -17,12 +17,12 @@
             "Ed": 3
         },
         "Mark": {
-            "None": -1,
-            "Eugene": -1,
-            "Claire": -1,
-            "Amanda": -1,
-            "Tilda": -1,
-            "Ed": -1
+            "None": 51,
+            "Eugene": 3,
+            "Claire": 54,
+            "Amanda": 3,
+            "Tilda": 3,
+            "Ed": 3
         },
         "Amanda": {
             "None": 8,
@@ -590,6 +590,68 @@
             "index": 50,
             "text": "Purely to take the mick outta Mark, I guess. Don't need much of a reason to go against that buffoon.",
             "reward_keys": [6],
+            "responses": []
+        },
+        {
+            "index": 51,
+            "text": "You're new to town, right? What brings you here?",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "I'm curious what's going on around town. Do you know anything?",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 52
+                },
+                {
+                    "text": "Just wandering through.",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 53
+                }
+            ]
+        },
+        {
+            "index": 52,
+            "text": "I'd rather not discuss the matters of our town with a stranger.",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 53,
+            "text": "Alright. Well, have a good afternoon.",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 54,
+            "text": "What do you need, O beautiful daughter of mine?",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "What is your problem with my husband?",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 55
+                },
+                {
+                    "text": "Do you realize Eugene was only singing about the sea?",
+                    "reveal_keys": [9, 8],
+                    "clear_keys": [],
+                    "follow_up_index": 56
+                }
+            ]
+        },
+        {
+            "index": 55,
+            "text": "Tilda told me that she heard him singing about another woman. Why would I be fine with a cheater!",
+            "reward_keys": [9, 7],
+            "responses": []
+        },
+        {
+            "index": 56,
+            "text": "The sea is a woman? That actually makes a lot of sense; I suppose an apology is in order.",
+            "reward_keys": [103],
             "responses": []
         }
     ]
