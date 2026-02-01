@@ -117,6 +117,7 @@ public class DialogueFetcher : MonoBehaviour
             GhostMask.MaskType.Fish => crn.Eugene,
             GhostMask.MaskType.Lion => crn.Mark,
             GhostMask.MaskType.Peacock => crn.Tilda,
+            GhostMask.MaskType.None => crn.None,
             _ => -1
         };
 
@@ -125,6 +126,7 @@ public class DialogueFetcher : MonoBehaviour
 
     public Dialogue FetchDialogue(int dialogueIndex)
     {
+        Debug.Log($"Fetching Dialogue Index {dialogueIndex}");
         DialogueEntry de = dialogueData.dialogues.FirstOrDefault(e => e.index == dialogueIndex);
 
         unlockedKeys.UnionWith(de.reward_keys);

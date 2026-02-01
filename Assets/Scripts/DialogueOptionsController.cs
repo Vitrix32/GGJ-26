@@ -41,9 +41,7 @@ public class DialogueOptionsController : MonoBehaviour
 
     public void setupDialogue(DialogueFetcher.Dialogue dialogueEntry)
     {
-        GroupBox optionsList = root.Q<GroupBox>("QuestionHoldBox");
-        optionsList.Clear();
-        CreateDialogueOptions(dialogueEntry.responses.ToArray());
+        CreateDialogueOptions(dialogueEntry.dialogueIndex, dialogueEntry.responses.ToArray());
         dialogueIndex = -1;
         testDialogue.Clear();
         var dialogueBox = root.Q<GroupBox>("MiddleBox").Q<TemplateContainer>();
@@ -108,31 +106,39 @@ public class DialogueOptionsController : MonoBehaviour
         }
 
     }
-    void CreateDialogueOptions(DialogueFetcher.ResponseField[] responses)
+    void CreateDialogueOptions(int dialogueIndex, DialogueFetcher.ResponseField[] responses)
     {
         GroupBox optionsList = root.Q<GroupBox>("QuestionHoldBox");
+        optionsList.Clear();
         for (int i = 0; i < responses.Length; i++)
         {
             TemplateContainer option = dialogueOptionTemplate.Instantiate();
             var optionText = option.Q<Button>("Question1");
             optionText.text = responses[i].text;
             DialogueFetcher.ResponseField capturedResponse = responses[i];
-            optionText.clicked += () => EvaluateDialogueOption(capturedResponse);
+            optionText.clicked += () => EvaluateDialogueOption(dialogueIndex, capturedResponse);
             optionsList.Add(option);
         }
+        TemplateContainer backButton = dialogueOptionTemplate.Instantiate();
+        var backText = backButton.Q<Button>("Question1");
+        backText.text = "Back";
+        backText.clicked += () => fadeOut();
+        optionsList.Add(backButton);
        
     }
 
-    void EvaluateDialogueOption(DialogueFetcher.ResponseField response)
+    void EvaluateDialogueOption(int dialogueId, DialogueFetcher.ResponseField response)
     {
-        StartCoroutine(DialogueOptionCoroutine(response));
+        StartCoroutine(DialogueOptionCoroutine(dialogueId, response));
     }
 
-    private IEnumerator DialogueOptionCoroutine(DialogueFetcher.ResponseField response)
+    private IEnumerator DialogueOptionCoroutine(int dialogueIndex, DialogueFetcher.ResponseField response)
     {
         addDialogueText(new Dialogue(response.text, 1));
         yield return new WaitForSeconds(1f);
-        fadeOut();
+        DialogueFetcher.Dialogue newDialogue = DialogueFetcher.Instance.GetFollowUpDialogue(dialogueIndex, response.responseIndex);
+        addDialogueText(new Dialogue(newDialogue.text, 0));
+        CreateDialogueOptions(newDialogue.dialogueIndex, newDialogue.responses.ToArray());
     }
 
     void CreateDialogueBox()
