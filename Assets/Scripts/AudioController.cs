@@ -16,6 +16,8 @@ public class AudioController : MonoBehaviour
     {
         GlobalSettings.Instance.MasterVolumeModified += SetVolume;
         GlobalSettings.Instance.MusicVolumeModified += SetVolume; 
+
+        SetVolume();
     }
 
     private void SetVolume()
