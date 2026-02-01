@@ -145,6 +145,7 @@ public class DialogueOptionsController : MonoBehaviour
     {
         TemplateContainer dialogueBox = dialogueBoxTemplate.Instantiate();
         //dialogueBox.flexGrow = 7;
+        print("There is a dialog box being made here >:()");
         dialogueBox.style.height = Screen.height * 0.7f; // 70% of screen height
         // Update on screen resize
         root.RegisterCallback<GeometryChangedEvent>(evt => {
@@ -163,6 +164,7 @@ public class DialogueOptionsController : MonoBehaviour
         root.SetEnabled(false);
         while (dialogueIndex < testDialogue.Count-1) {
         var dialogueLabel = root.Q<Label>("Dialogue");
+        print(dialogueIndex);
         dialogueIndex += 1;
         dialogueLabel.text = testDialogue[dialogueIndex].text;
         //dialogueLabel.MarkDirtyRepaint();
