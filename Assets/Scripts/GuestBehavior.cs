@@ -221,6 +221,7 @@ public class GuestBehavior : MonoBehaviour
             GetComponent<Ghost>().Name, 
             GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<GhostMask>().Mask
         );
+        dialoguePopup.GetComponent<DialogueOptionsController>().setupImages(GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<GhostMask>().Mask,GetComponent<Ghost>().Name);
         dialoguePopup.GetComponent<DialogueOptionsController>().setupDialogue(dialogueEntry);
         dialoguePopup.GetComponent<DialogueOptionsController>().dialogueFinished += ReturnFromTalking;
     }

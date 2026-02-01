@@ -38,6 +38,10 @@ public class DialogueOptionsController : MonoBehaviour
         CreateDialogueBox();
     }
 
+    public void setupImages(GhostMask.MaskType maskType, Ghost.GhostName ghostName) {
+        root.Q<VisualElement>("NPCPortrait").style.backgroundImage = new StyleBackground(Resources.Load<Texture2D>($"Sprites/Ghost/{ghostName}_card"));
+        root.Q<VisualElement>("UserPortrait").style.backgroundImage = new StyleBackground(Resources.Load<Texture2D>($"Sprites/Ghost/{maskType}_Player_card"));
+    }
 
     public void setupDialogue(DialogueFetcher.Dialogue dialogueEntry)
     {

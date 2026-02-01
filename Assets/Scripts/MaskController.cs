@@ -36,6 +36,6 @@ public class MaskController : MonoBehaviour
     {
         MaskPair maskToPutOn = masks[maskNum];
         currentlyWearing = maskToPutOn.Key;
-        playerMask.sprite = maskToPutOn.Value;
+        playerMask.GetComponent<GhostMask>().Mask = maskToPutOn.Key;
     }
 }
