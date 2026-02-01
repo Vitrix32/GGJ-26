@@ -718,7 +718,7 @@ GameObject:
   - component: {fileID: 405981200}
   - component: {fileID: 405981199}
   - component: {fileID: 405981203}
-  - component: {fileID: 405981202}
+  - component: {fileID: 405981204}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -802,19 +802,6 @@ Transform:
   - {fileID: 2111129386}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &405981202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 405981198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d97137a50341a842a16c2fc43cc7dd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bounds: {fileID: 0}
 --- !u!114 &405981203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -859,6 +846,19 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &405981204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405981198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 127438327691879449d335deb907ed95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundImage: {fileID: 2038258131}
 --- !u!1001 &434599054
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3806,7 +3806,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 6.1186085, y: -7.510346}
+  m_Offset: {x: 6.1186085, y: -7.6991167}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3817,7 +3817,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.640524, y: 1.4626436}
+  m_Size: {x: 2.640524, y: 1.0851016}
   m_EdgeRadius: 0
 --- !u!1 &1485203758
 GameObject:
