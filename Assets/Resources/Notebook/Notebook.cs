@@ -1,0 +1,152 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEngine.UIElements.Experimental;
+
+public class Notebook : MonoBehaviour
+{
+    [SerializeField] UIDocument notebook;
+    [SerializeField] UIDocument clues;
+    bool cluesOpen = false;
+    VisualElement notebookRoot;
+    VisualElement cluesRoot;
+    public Dictionary<Ghost.GhostName, GhostMask.MaskType> ghostData = new() {
+        {Ghost.GhostName.Eugene, GhostMask.MaskType.Fish},
+        {Ghost.GhostName.Claire, GhostMask.MaskType.Horns},
+        {Ghost.GhostName.Mark, GhostMask.MaskType.Lion},
+        {Ghost.GhostName.Ed, GhostMask.MaskType.Standard},
+        {Ghost.GhostName.Amanda, GhostMask.MaskType.Deer},
+        {Ghost.GhostName.Tilda, GhostMask.MaskType.Peacock}
+    };
+    // Start is called before the first frame update
+    void Start()
+    {
+        notebookRoot = notebook.rootVisualElement;
+        cluesRoot = clues.rootVisualElement;
+        cluesRoot.style.opacity = 0;
+        notebookRoot.SetEnabled(false);
+        cluesRoot.SetEnabled(false);
+        notebookRoot.style.opacity = 0;
+        var closeButton = cluesRoot.Q<Button>("Close");
+        closeButton.clicked += () => closeClues();
+        notebookRoot.Q<Button>("Close").clicked += () => fadeOut();
+        notebookRoot.style.display = DisplayStyle.None;
+        cluesRoot.style.display = DisplayStyle.None;
+        fadeIn();
+    }
+    void openNotebook() {
+        print("open notembook");
+        GroupBox ghostList = notebookRoot.Q<GroupBox>("GroupBox");
+        cluesRoot.style.display = DisplayStyle.None;
+        ghostList.Clear();
+        notebookRoot.SetEnabled(true); 
+        foreach (var entry in ghostData) {
+            Button ghostButton = new Button();
+            ghostButton.style.flexGrow = 2;
+            ghostButton.style.height = Length.Percent(80); // or new StyleLength(new Length(80, LengthUnit.Percent))
+    
+            // For images in UI Toolkit, set background-image
+            ghostButton.style.backgroundImage = new StyleBackground(Resources.Load<Texture2D>($"Sprites/Ghost/{entry.Key}_card"));
+            ghostButton.style.backgroundColor = new Color(0,0,0,0);
+            ghostButton.style.borderLeftWidth = 0;
+            ghostButton.style.borderRightWidth = 0;
+            ghostButton.style.borderTopWidth = 0;
+            ghostButton.style.borderBottomWidth = 0;
+    
+            // Optional: Scale the image properly
+            ghostButton.style.unityBackgroundScaleMode = ScaleMode.ScaleToFit;
+            ghostButton.clicked += () => openClues(entry.Key, entry.Value);
+            ghostList.Add(ghostButton);
+        }
+    }
+
+    void openClues(Ghost.GhostName ghostName, GhostMask.MaskType maskType) {
+        print("open clues");
+        notebookRoot.style.display = DisplayStyle.None;
+        cluesRoot.style.display = DisplayStyle.Flex;
+        cluesRoot.style.opacity = 1;
+        cluesRoot.SetEnabled(true);
+        Label ghostNameLabel = cluesRoot.Q<Label>("Name");
+        ghostNameLabel.text = maskType.ToString();
+        VisualElement ghostImage = cluesRoot.Q<VisualElement>("VisualElement");
+        ghostImage.style.backgroundImage = new StyleBackground(Resources.Load<Texture2D>($"Sprites/Ghost/{ghostName}_card"));
+        ghostImage.style.unityBackgroundScaleMode = ScaleMode.ScaleToFit;
+        
+        
+    }
+
+    void closeClues() {
+        print("Close clues");
+        cluesRoot.style.display = DisplayStyle.None;
+        fadeIn();
+    }
+
+    public void fadeIn()
+    {
+        cluesRoot.style.opacity = 0;
+        notebookRoot.style.display = DisplayStyle.Flex;
+        notebookRoot.SetEnabled(false);
+        notebookRoot.experimental.animation.Start(
+        new StyleValues
+        {
+            //left = -500,
+            opacity = 0
+        },
+        new StyleValues
+        {
+            //left = 0,
+            opacity = 1
+        },
+        2000);
+        openNotebook();
+        
+    }
+    public void fadeOut()
+    {
+        cluesRoot.style.opacity = 0;
+        notebookRoot.style.display = DisplayStyle.Flex;
+        notebookRoot.SetEnabled(false);
+        notebookRoot.experimental.animation.Start(
+        new StyleValues
+        {
+            //left = -500,
+            opacity = 1
+        },
+        new StyleValues
+        {
+            //left = 0,
+            opacity = 0
+        },
+        2000);
+        notebookRoot.style.display = DisplayStyle.None;
+        
+    }
+    /*
+    public void fadeOut()
+    {
+        root.style.opacity = 1;
+        root.experimental.animation.Start(
+        new StyleValues
+        {
+            //left = -500,
+            opacity = 1
+        },
+        new StyleValues
+        {
+            //left = 0,
+            opacity = 0
+        },
+        1000);
+        dialogueFinished?.Invoke();
+        root.SetEnabled(false);    }*/
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}

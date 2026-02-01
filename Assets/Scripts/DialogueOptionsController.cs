@@ -37,6 +37,7 @@ public class DialogueOptionsController : MonoBehaviour
     {
         root = dialogueComponent.rootVisualElement;
         root.style.opacity = 0;
+        root.style.display = DisplayStyle.None;
         CreateDialogueBox();
     }
 
@@ -73,7 +74,8 @@ public class DialogueOptionsController : MonoBehaviour
         },
         3000);
 
-        root.SetEnabled(true); 
+        root.SetEnabled(true);
+        root.style.display = DisplayStyle.Flex;
     }
 
     public void fadeOut()
@@ -92,6 +94,7 @@ public class DialogueOptionsController : MonoBehaviour
         },
         1000);
         dialogueFinished?.Invoke();
+        root.style.display = DisplayStyle.None;
         root.SetEnabled(false);    }
 
     void addDialogueText(Dialogue text)
