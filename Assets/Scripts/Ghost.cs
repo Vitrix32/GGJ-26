@@ -11,7 +11,8 @@ public class Ghost : MonoBehaviour
         Mark,
         Amanda,
         Tilda,
-        Ed
+        Ed,
+        None
     }
 
     [SerializeField]
