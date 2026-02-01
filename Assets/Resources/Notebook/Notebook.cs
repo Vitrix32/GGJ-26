@@ -32,6 +32,11 @@ public class Notebook : MonoBehaviour
         notebookRoot.SetEnabled(false);
         cluesRoot.SetEnabled(false);
         notebookRoot.style.opacity = 0;
+        var closeButton = cluesRoot.Q<Button>("Close");
+        closeButton.clicked += () => closeClues();
+        notebookRoot.Q<Button>("Close").clicked += () => fadeOut();
+        notebookRoot.style.display = DisplayStyle.None;
+        cluesRoot.style.display = DisplayStyle.None;
         fadeIn();
     }
     void openNotebook() {
@@ -65,16 +70,26 @@ public class Notebook : MonoBehaviour
         notebookRoot.style.display = DisplayStyle.None;
         cluesRoot.style.display = DisplayStyle.Flex;
         cluesRoot.style.opacity = 1;
+        cluesRoot.SetEnabled(true);
         Label ghostNameLabel = cluesRoot.Q<Label>("Name");
         ghostNameLabel.text = maskType.ToString();
         VisualElement ghostImage = cluesRoot.Q<VisualElement>("VisualElement");
         ghostImage.style.backgroundImage = new StyleBackground(Resources.Load<Texture2D>($"Sprites/Ghost/{ghostName}_card"));
         ghostImage.style.unityBackgroundScaleMode = ScaleMode.ScaleToFit;
+        
+        
+    }
+
+    void closeClues() {
+        print("Close clues");
+        cluesRoot.style.display = DisplayStyle.None;
+        fadeIn();
     }
 
     public void fadeIn()
     {
         cluesRoot.style.opacity = 0;
+        notebookRoot.style.display = DisplayStyle.Flex;
         notebookRoot.SetEnabled(false);
         notebookRoot.experimental.animation.Start(
         new StyleValues
@@ -89,6 +104,26 @@ public class Notebook : MonoBehaviour
         },
         2000);
         openNotebook();
+        
+    }
+    public void fadeOut()
+    {
+        cluesRoot.style.opacity = 0;
+        notebookRoot.style.display = DisplayStyle.Flex;
+        notebookRoot.SetEnabled(false);
+        notebookRoot.experimental.animation.Start(
+        new StyleValues
+        {
+            //left = -500,
+            opacity = 1
+        },
+        new StyleValues
+        {
+            //left = 0,
+            opacity = 0
+        },
+        2000);
+        notebookRoot.style.display = DisplayStyle.None;
         
     }
     /*
