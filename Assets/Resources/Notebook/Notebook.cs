@@ -7,7 +7,6 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.UIElements.Experimental;
-
 public class Notebook : MonoBehaviour
 {
     [SerializeField] UIDocument notebook;
@@ -47,6 +46,7 @@ public class Notebook : MonoBehaviour
         cluesRoot.SetEnabled(false);
         notebookRoot.style.opacity = 0;
         var closeButton = cluesRoot.Q<Button>("Close");
+        notebookRoot.Q<Button>("Verify").clicked += () => verifyGuesses();
         closeButton.clicked += () => closeClues();
         notebookRoot.Q<Button>("Close").clicked += () => fadeOut();
         cluesRoot.Q<EnumField>("UnmaskChoice").Init(Ghost.GhostName.None);
@@ -91,14 +91,51 @@ public class Notebook : MonoBehaviour
         currentGhostName = ghostName;
         currentMaskType = maskType;
         cluesRoot.SetEnabled(true);
+        cluesRoot.Q<EnumField>("UnmaskChoice").Init(ghostGuesses[maskType]);
         Label ghostNameLabel = cluesRoot.Q<Label>("Name");
         ghostNameLabel.text = maskType.ToString();
         VisualElement ghostImage = cluesRoot.Q<VisualElement>("VisualElement");
         ghostImage.style.backgroundImage = new StyleBackground(Resources.Load<Texture2D>($"Sprites/Ghost/{ghostName}_card"));
         ghostImage.style.unityBackgroundScaleMode = ScaleMode.ScaleToFit;
-        
-        
     }
+
+    void verifyGuesses()
+    {
+        int correctGuesses = 0;
+        foreach (var entry in ghostGuesses)
+        {
+            if (ghostData.ContainsKey(entry.Value) &&ghostData[entry.Value] == entry.Key) {
+                correctGuesses += 1;
+            }
+        }
+        if (correctGuesses == ghostData.Count) {
+            //Player has won
+            Debug.Log("All guesses correct!");
+        }
+        else
+        {
+            StartCoroutine(ShakeButton(notebookRoot.Q<Button>("Verify")));
+        }
+    }
+
+    IEnumerator ShakeButton(Button button, float duration = 0.4f, float intensity = 5f)
+{
+    float elapsed = 0f;
+    Vector3 originalPosition = button.transform.position;
+    
+    while (elapsed < duration)
+    {
+        float x = UnityEngine.Random.Range(-1f, 1f) * intensity;
+        float y = UnityEngine.Random.Range(-1f, 1f) * intensity;
+        
+        button.style.translate = new Translate(x, y);
+        
+        elapsed += Time.deltaTime;
+        yield return null;
+    }
+    
+    button.style.translate = new Translate(0, 0);
+}
 
     void closeClues() {
         print("Close clues");
