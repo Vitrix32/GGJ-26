@@ -4369,7 +4369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8202076769320939662, guid: 45334e957c05d074f8418a3241160d06, type: 3}
       propertyPath: masks.Array.data[5].Key
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8202076769320939662, guid: 45334e957c05d074f8418a3241160d06, type: 3}
       propertyPath: masks.Array.data[6].Key
@@ -4382,19 +4382,19 @@ PrefabInstance:
     - target: {fileID: 8202076769320939662, guid: 45334e957c05d074f8418a3241160d06, type: 3}
       propertyPath: MaskButtons.Array.data[1]
       value: 
-      objectReference: {fileID: 1608449369}
+      objectReference: {fileID: 538633880}
     - target: {fileID: 8202076769320939662, guid: 45334e957c05d074f8418a3241160d06, type: 3}
       propertyPath: MaskButtons.Array.data[2]
       value: 
-      objectReference: {fileID: 949731146}
+      objectReference: {fileID: 1608449369}
     - target: {fileID: 8202076769320939662, guid: 45334e957c05d074f8418a3241160d06, type: 3}
       propertyPath: MaskButtons.Array.data[3]
       value: 
-      objectReference: {fileID: 1396667162}
+      objectReference: {fileID: 949731146}
     - target: {fileID: 8202076769320939662, guid: 45334e957c05d074f8418a3241160d06, type: 3}
       propertyPath: MaskButtons.Array.data[4]
       value: 
-      objectReference: {fileID: 538633880}
+      objectReference: {fileID: 1396667162}
     - target: {fileID: 8202076769320939662, guid: 45334e957c05d074f8418a3241160d06, type: 3}
       propertyPath: MaskButtons.Array.data[5]
       value: 
