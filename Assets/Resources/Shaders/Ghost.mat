@@ -29,8 +29,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Fade: 1
     - _WarpIntensity: 0.015
     - _WarpSpeed: 2
     m_Colors:
-    - _GlowColor: {r: 0, g: 0.21440828, b: 0.23584908, a: 1}
+    - _GlowColor: {r: 0.16740832, g: 0.47579202, b: 0.6226415, a: 1}
   m_BuildTextureStacks: []
