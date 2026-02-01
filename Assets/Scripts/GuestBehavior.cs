@@ -40,6 +40,8 @@ public class GuestBehavior : MonoBehaviour
 
     public GameObject dialoguePopup;
 
+    private Material mat;
+
     private void Awake()
     {
         dialoguePopup = GameObject.Find("DialoguePopup");
@@ -48,7 +50,6 @@ public class GuestBehavior : MonoBehaviour
     void Start()
     {
         //dialoguePopup.SetActive(false);
-
         randomTalk = gameObject.GetComponent<RandomTalk>();
         randomTalk.StartRandomTalking();
 
@@ -57,6 +58,7 @@ public class GuestBehavior : MonoBehaviour
 
         startLocalPos = spriteTransform.localPosition;
         spriteRenderer = spriteTransform.gameObject.GetComponent<SpriteRenderer>();
+        mat = spriteRenderer.material;
 
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
@@ -66,10 +68,6 @@ public class GuestBehavior : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            LoseMask();
-        }
 
         // Use actual movement speed
         float speed = agent.velocity.magnitude;
@@ -214,6 +212,14 @@ public class GuestBehavior : MonoBehaviour
         StartCoroutine(startTalk());
     }
 
+    void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            LoseMask();
+        }
+    }
+
     public IEnumerator startTalk()
     {
         while (Vector3.Distance(player.transform.position, transform.position) > 3)
@@ -304,14 +310,17 @@ public class GuestBehavior : MonoBehaviour
     {
         float t = 0f;
         Color start = spriteRenderer.color;
-
+        Debug.Log(mat.HasProperty("_Opacity"));
         while (t < fadeDuration)
         {
             t += Time.deltaTime;
             float a = Mathf.Lerp(1f, 0f, t / fadeDuration);
-            spriteRenderer.color = new Color(start.r, start.g, start.b, a);
+            mat.SetFloat("_Fade", a);
+            Debug.Log(a);
             yield return null;
         }
+        revealParticles.Stop();
+        yield return new WaitForSeconds(fadeDuration);
         Destroy(gameObject);
     }
 }

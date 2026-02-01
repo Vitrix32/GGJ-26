@@ -976,6 +976,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3471589615305540095, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
+      propertyPath: fadeDuration
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5872941124104343748, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -2114,7 +2118,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 464.99997, y: -195.4}
+  m_AnchoredPosition: {x: 439.3583, y: -164.6}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1114122009
@@ -3992,7 +3996,7 @@ GameObject:
   - component: {fileID: 1695289700}
   - component: {fileID: 1695289699}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: MaskPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
