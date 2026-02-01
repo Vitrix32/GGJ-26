@@ -17,7 +17,8 @@ public class Notebook : MonoBehaviour
     VisualElement cluesRoot;
     Ghost.GhostName currentGhostName;
     GhostMask.MaskType currentMaskType;
-
+    private GameObject player;
+    private PointAndClick pointAndClick;
     public Dictionary<Ghost.GhostName, GhostMask.MaskType> ghostData = new() {
         {Ghost.GhostName.Eugene, GhostMask.MaskType.Fish},
         {Ghost.GhostName.Claire, GhostMask.MaskType.Horns},
@@ -37,6 +38,8 @@ public class Notebook : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("MainCharacter");
+        pointAndClick = player.GetComponent<PointAndClick>();
         notebookRoot = notebook.rootVisualElement;
         cluesRoot = clues.rootVisualElement;
         cluesRoot.style.opacity = 0;
@@ -52,7 +55,7 @@ public class Notebook : MonoBehaviour
         });
         notebookRoot.style.display = DisplayStyle.None;
         cluesRoot.style.display = DisplayStyle.None;
-        fadeIn();
+        //fadeIn();
     }
     void openNotebook() {
         print("open notembook");
@@ -105,6 +108,8 @@ public class Notebook : MonoBehaviour
 
     public void fadeIn()
     {
+        openNotebook();
+        pointAndClick.isTalking = true;
         cluesRoot.style.opacity = 0;
         notebookRoot.style.display = DisplayStyle.Flex;
         notebookRoot.SetEnabled(false);
@@ -119,8 +124,11 @@ public class Notebook : MonoBehaviour
             //left = 0,
             opacity = 1
         },
-        2000);
-        openNotebook();
+        2000).OnCompleted(() => {
+            notebookRoot.SetEnabled(true);
+            
+        });
+        
         
     }
     public void fadeOut()
@@ -139,8 +147,11 @@ public class Notebook : MonoBehaviour
             //left = 0,
             opacity = 0
         },
-        2000);
-        notebookRoot.style.display = DisplayStyle.None;
+        2000).OnCompleted(() => {
+            pointAndClick.isTalking = false;
+            notebookRoot.style.display = DisplayStyle.None;
+        });
+        
         
     }
     /*
