@@ -2675,6 +2675,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueController
       objectReference: {fileID: 0}
+    - target: {fileID: 517650270204400387, guid: 569c88fc7d55aa4448fd7659a9ed9222, type: 3}
+      propertyPath: jsonFile
+      value: 
+      objectReference: {fileID: 4900000, guid: 7479adb0a0ad688459af6df0002d29b9, type: 3}
     - target: {fileID: 7346438479019017493, guid: 569c88fc7d55aa4448fd7659a9ed9222, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

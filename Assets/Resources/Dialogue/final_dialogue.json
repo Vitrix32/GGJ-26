@@ -1,0 +1,135 @@
+{
+    "root_nodes": {
+        "Eugene": {
+            "None": -1,
+            "Claire": -1,
+            "Mark": -1,
+            "Amanda": -1,
+            "Tilda": -1,
+            "Ed": -1
+        },
+        "Claire": {
+            "None": -1,
+            "Eugene": -1,
+            "Mark": -1,
+            "Amanda": -1,
+            "Tilda": -1,
+            "Ed": -1
+        },
+        "Mark": {
+            "None": -1,
+            "Eugene": -1,
+            "Claire": -1,
+            "Amanda": -1,
+            "Tilda": -1,
+            "Ed": -1
+        },
+        "Amanda": {
+            "None": -1,
+            "Eugene": -1,
+            "Claire": -1,
+            "Mark": -1,
+            "Tilda": -1,
+            "Ed": -1
+        },
+        "Tilda": {
+            "None": -1,
+            "Eugene": -1,
+            "Claire": -1,
+            "Mark": -1,
+            "Amanda": -1,
+            "Ed": -1
+        },
+        "Ed": {
+            "None": 0,
+            "Eugene": 3,
+            "Claire": 3,
+            "Mark": 3,
+            "Amanda": 4,
+            "Tilda": 3
+        }
+    },
+    "dialogues": [
+        {
+            "index": 0,
+            "text": "Hey man, what's up? You sneak in here too? I'm Ed. I work here but they don't have to know that, am I right?",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "I'm actually a detective, I was brought in to learn what happened here.",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 1
+                },
+                {
+                    "text": "Do you actually know anyone here?",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 2 
+                }
+            ]
+        },
+        {
+            "index": 1,
+            "text": "Oh siick man, you are in for a doozy! I mean, I assume so. Nobody gives me the light of day except for sometimes Amanda. So I guess I wouldn't know.",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 2,
+            "text": "Know? That's a funny word. I know about the people here, like how two mayoral candidates here are running against each other. I know I like the fisherman more. But do I really know anyone here? Nah, not really.",
+            "reward_keys": [0],
+            "responses": []
+        },
+        {
+            "index": 3,
+            "text": "...I don't want to talk to you right now.",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 4,
+            "text": "Hey Amanda, bored already?",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "These people are too crazy for me!",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 5
+                },
+                {
+                    "text": "Maybe I just like talking to you!",
+                    "reveal_keys": [1],
+                    "clear_keys": [],
+                    "follow_up_index": 6
+                }
+            ]
+        },
+        {
+            "index": 5,
+            "text": "Yeah, I get that. You can hang out with me any time!",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 6,
+            "text": "Wait, you do? I mean, I like talking to you too...",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "Why don't we hang out, like, when we get out of here?",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 7
+                }
+            ]
+        },
+        {
+            "index": 7,
+            "text": "You'd do that? Man, I thought I was out of your league! I love you! I mean... I'd love to!",
+            "reward_keys": [2],
+            "responses": []
+        }
+    ]
+}

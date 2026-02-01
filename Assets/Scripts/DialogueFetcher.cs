@@ -137,7 +137,7 @@ public class DialogueFetcher : MonoBehaviour
         d.responses = new List<ResponseField>();
         foreach (var (r, index) in de.responses.Select((value, i) => (value, i)))
         {
-            if (unlockedKeys.IsSupersetOf(r.reveal_keys) && !unlockedKeys.IsSupersetOf(r.clear_keys))
+            if (unlockedKeys.IsSupersetOf(r.reveal_keys))
             {
                 ResponseField rf = new ResponseField();
                 rf.text = r.text;

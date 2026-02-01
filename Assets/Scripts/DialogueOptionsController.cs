@@ -132,7 +132,7 @@ public class DialogueOptionsController : MonoBehaviour
 
     private IEnumerator DialogueOptionCoroutine(int dialogueIndex, DialogueFetcher.ResponseField response)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
         DialogueFetcher.Dialogue newDialogue = DialogueFetcher.Instance.GetFollowUpDialogue(dialogueIndex, response.responseIndex);
         addDialogueText(new Dialogue(newDialogue.text, 0));
         CreateDialogueOptions(newDialogue.dialogueIndex, newDialogue.responses.ToArray());
@@ -180,7 +180,7 @@ public class DialogueOptionsController : MonoBehaviour
             {
                 dialogueLabel.text += newDialogue[i];
                 i++;
-                yield return new WaitForSeconds(0.07f);
+                yield return new WaitForSeconds(0.02f);
                 if (char.IsPunctuation(newDialogue[i - 1]))
                 {
                     yield return new WaitForSeconds(.13f);
