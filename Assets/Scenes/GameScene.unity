@@ -581,15 +581,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6265083370230546629, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
       propertyPath: dialogueOptions.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6265083370230546629, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
       propertyPath: dialogueOptions.Array.data[0]
-      value: What are you looking at punk?
+      value: Glad I snuck in here... the food is so good!
       objectReference: {fileID: 0}
     - target: {fileID: 6265083370230546629, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
       propertyPath: dialogueOptions.Array.data[1]
-      value: Beat it loser
+      value: That fisherman knows a right good tune.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6265083370230546629, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
+      propertyPath: dialogueOptions.Array.data[2]
+      value: I wonder what she thinks of me...
       objectReference: {fileID: 0}
     - target: {fileID: 6466097133196862081, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1172,11 +1176,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6265083370230546629, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
       propertyPath: dialogueOptions.Array.data[0]
-      value: OoOOooOoO
+      value: Claire's such a nice girl
       objectReference: {fileID: 0}
     - target: {fileID: 6265083370230546629, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
       propertyPath: dialogueOptions.Array.data[1]
-      value: I am a ghost! Beware!
+      value: 'Oh! He''s looking at me! '
       objectReference: {fileID: 0}
     - target: {fileID: 6466097133196862081, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3155,7 +3159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6265083370230546629, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
       propertyPath: dialogueOptions.Array.data[0]
-      value: Why aren't there any doors in this place?
+      value: That fisherman's temperament is as foul as his stock
       objectReference: {fileID: 0}
     - target: {fileID: 6466097133196862081, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3415,11 +3419,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6265083370230546629, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
       propertyPath: dialogueOptions.Array.data[0]
-      value: Watch out there's ghosts here!
+      value: Did you hear about...?
       objectReference: {fileID: 0}
     - target: {fileID: 6265083370230546629, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
       propertyPath: dialogueOptions.Array.data[1]
-      value: Did you see that?
+      value: I heard that ... was ...
       objectReference: {fileID: 0}
     - target: {fileID: 6466097133196862081, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4344,11 +4348,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6265083370230546629, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
       propertyPath: dialogueOptions.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6265083370230546629, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
       propertyPath: dialogueOptions.Array.data[0]
-      value: This is my only dialogue option :(
+      value: I wish they'd stop fighting...
+      objectReference: {fileID: 0}
+    - target: {fileID: 6265083370230546629, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
+      propertyPath: dialogueOptions.Array.data[1]
+      value: I hope Amanda will open up to me a bit more...
       objectReference: {fileID: 0}
     - target: {fileID: 6466097133196862081, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
       propertyPath: m_AnchorMax.y
@@ -5863,15 +5871,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6265083370230546629, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
       propertyPath: dialogueOptions.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6265083370230546629, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
       propertyPath: dialogueOptions.Array.data[0]
-      value: Hey can you see me?
+      value: That old curmudgeon...
       objectReference: {fileID: 0}
     - target: {fileID: 6265083370230546629, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
       propertyPath: dialogueOptions.Array.data[1]
-      value: Do you like my mask?
+      value: Who does he think he is?
       objectReference: {fileID: 0}
     - target: {fileID: 6265083370230546629, guid: 27486d9cbfc80284aa39dc5e2f600716, type: 3}
       propertyPath: dialogueOptions.Array.data[2]
