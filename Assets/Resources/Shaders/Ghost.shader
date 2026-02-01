@@ -60,7 +60,7 @@ Shader "Unlit/Ghost"
                 float4 col = tex2D(_MainTex, warpeduv);
                 col.a = min(col.a, i.uv.y * i.uv.y);
                 col.a *= _Fade;
-                col.rgb += _GlowColor.rgb;
+                col.rgb += 3 * _GlowColor.rgb;
                 return col;
             }
             ENDCG
