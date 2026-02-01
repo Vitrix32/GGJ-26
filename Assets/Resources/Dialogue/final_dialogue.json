@@ -2,6 +2,7 @@
     "root_nodes": {
         "Eugene": {
             "None": 45,
+            "Eugene": 66,
             "Claire": 35,
             "Mark": 40,
             "Amanda": 3,
@@ -11,6 +12,7 @@
         "Claire": {
             "None": 19,
             "Eugene": 26,
+            "Claire": 66,
             "Mark": 29,
             "Amanda": 22,
             "Tilda": 32,
@@ -20,6 +22,7 @@
             "None": 51,
             "Eugene": 3,
             "Claire": 54,
+            "Mark": 66,
             "Amanda": 3,
             "Tilda": 3,
             "Ed": 3
@@ -29,6 +32,7 @@
             "Eugene": 3,
             "Claire": 10,
             "Mark": 16,
+            "Amanda": 66,
             "Tilda": 3,
             "Ed": 13
         },
@@ -38,6 +42,7 @@
             "Claire": 3,
             "Mark": 60,
             "Amanda": 3,
+            "Tilda": 66,
             "Ed": 63
         },
         "Ed": {
@@ -46,7 +51,8 @@
             "Claire": 3,
             "Mark": 3,
             "Amanda": 4,
-            "Tilda": 3
+            "Tilda": 3,
+            "Ed": 66
         }
     },
     "dialogues": [
@@ -745,6 +751,12 @@
         {
             "index": 65,
             "text": "You and me both. I was as surprised as anyone, but he would get my vote any day.",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 66,
+            "text": "Hey, we're mask twins!",
             "reward_keys": [],
             "responses": []
         }
