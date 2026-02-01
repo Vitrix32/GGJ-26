@@ -2,19 +2,19 @@
     "root_nodes": {
         "Eugene": {
             "None": -1,
-            "Claire": -1,
+            "Claire": 35,
             "Mark": -1,
             "Amanda": -1,
             "Tilda": -1,
             "Ed": -1
         },
         "Claire": {
-            "None": -1,
-            "Eugene": -1,
-            "Mark": -1,
-            "Amanda": -1,
-            "Tilda": -1,
-            "Ed": -1
+            "None": 19,
+            "Eugene": 3,
+            "Mark": 29,
+            "Amanda": 22,
+            "Tilda": 32,
+            "Ed": 3
         },
         "Mark": {
             "None": -1,
@@ -25,12 +25,12 @@
             "Ed": -1
         },
         "Amanda": {
-            "None": -1,
-            "Eugene": -1,
-            "Claire": -1,
-            "Mark": -1,
-            "Tilda": -1,
-            "Ed": -1
+            "None": 8,
+            "Eugene": 26,
+            "Claire": 10,
+            "Mark": 16,
+            "Tilda": 3,
+            "Ed": 13
         },
         "Tilda": {
             "None": -1,
@@ -128,7 +128,289 @@
         {
             "index": 7,
             "text": "You'd do that? Man, I thought I was out of your league! I love you! I mean... I'd love to!",
-            "reward_keys": [2],
+            "reward_keys": [2, 100],
+            "responses": []
+        },
+        {
+            "index": 8,
+            "text": "Who are you? Do you have an appointment with the mayor?",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "No I don't. I'm investigating what happened here.",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 9
+                }
+            ]
+        },
+        {
+            "index": 9,
+            "text": "What happened here? I'm afraid this is just getting started. This is going to be a long night for me I'm afraid. The mayor will need a lot of help in the office tomorrow at this pace.",
+            "reward_keys": [3],
+            "responses": []
+        },
+        {
+            "index": 10,
+            "text": "Hi Claire. Are you having fun tonight?",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "Not really.",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 11
+                },
+                {
+                    "text": "We could be having fun! Say, you catching the hots for anyone?",
+                    "reveal_keys": [4],
+                    "clear_keys": [],
+                    "follow_up_index": 12
+                }
+            ]
+        },
+        {
+            "index": 11,
+            "text": "That's a shame. These parties should be illegal. I'd bring it up to the mayor but he seems to like them.",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 12,
+            "text": "CLAIRE!! ...Okay, I guess I've had my eye on that hotel worker. You think he'd be into me?",
+            "reward_keys": [1],
+            "responses": []
+        },
+        {
+            "index": 13,
+            "text": "Oh hey! Um, what are you up to?",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "Just makin' the rounds.",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 14
+                },
+                {
+                    "text": "I'm sick of this party. Do you wanna go on a date when this thing is over?",
+                    "reveal_keys": [2],
+                    "clear_keys": [],
+                    "follow_up_index": 15
+                }
+
+            ]
+        },
+        {
+            "index": 14,
+            "text": "Oh, well, good luck!",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 15,
+            "text": "Really? You... actually like.... me? Um, of course I do Ed! I'll be ready!",
+            "reward_keys": [101],
+            "responses": []
+        },
+        {
+            "index": 16,
+            "text": "Do you need something?",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "Not right now.",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 17
+                },
+                {
+                    "text": "Something came up. I'm going to need that report on my desk by Wednesday.",
+                    "reveal_keys": [3, 5],
+                    "clear_keys": [],
+                    "follow_up_index": 18
+                }
+
+            ]
+        },
+        {
+            "index": 17,
+            "text": "Okay. Let me know if you need me.",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 18,
+            "text": "Oh, okay, I understand. I'll get right on it!",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 19,
+            "text": "What are you doing here? No one has been around these parts in a while. This town sure has seen better days.",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "I'm actually a detective. It seems like there's a mystery to solve here.",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 20
+                },
+                {
+                    "text": "What do you mean by better days?",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 21
+                }
+
+            ]
+        },
+        {
+            "index": 20,
+            "text": "The mystery of why we are ghosts? I guess it's because of the dead atmosphere in here!",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 21,
+            "text": "Well, do you see a lot of happy interaction around here? I don't think so.",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 22,
+            "text": "Amanda! It's so good to see you. At least someone here wants to talk to me.",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "What's going on?",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 23
+                },
+                {
+                    "text": "Are you okay?",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 24
+                },
+                {
+                    "text": "It's not your fault your family was splitting apart. Mark and Eugene are talking again.",
+                    "reveal_keys": [103, 104],
+                    "clear_keys": [],
+                    "follow_up_index": 25
+                }
+            ]
+        },
+        {
+            "index": 23,
+            "text": "Quit play-acting. You know exactly what happened. I really don't want to relive it all again.",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 24,
+            "text": "Not really. This is so boring. I hate the energy around here. At least I have you!",
+            "reward_keys": [4],
+            "responses": []
+        },
+        {
+            "index": 25,
+            "text": "They really apologized to each other? I am so grateful! I do miss us being together. Maybe this town really can put itself back together.",
+            "reward_keys": [102],
+            "responses": []
+        },
+        {
+            "index": 26,
+            "text": "Eugene my beloved... Why do you have to keep fighting with my father? You don't have to be right all the time!",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "Uhh, because he sucks?",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 27
+                },
+                {
+                    "text": "If he can't let this go, then enither can I!",
+                    "reveal_keys": [0, 6],
+                    "clear_keys": [],
+                    "follow_up_index": 28
+                }
+            ]
+        },
+        {
+            "index": 27,
+            "text": "That is so out of character for you. Knock it off!",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 28,
+            "text": "Eugene! You can't keep doing this to me!",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 29,
+            "text": "Dad, can you keep the peace for just a while? I wish we could be a happy family again...",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "I uh, can't?",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 30
+                },
+                {
+                    "text": "I'll never forgive your husband for what he's done to me!",
+                    "reveal_keys": [0, 6],
+                    "clear_keys": [],
+                    "follow_up_index": 31
+                }
+            ]
+        },
+        {
+            "index": 30,
+            "text": "Dad! What happened to being able to do anything!",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 31,
+            "text": "How could you say that? He's your son-in-law!",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 32,
+            "text": "Well if it isn't the resident busybody. What do you want?",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "I'm worried about Eugene. As his aunt, I have a right to know what is going on.",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 33
+                },
+                {
+                    "text": "Your father was a good friend of mine. Don't I deserve some answers?",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 34
+                }
+            ]
+        },
+        {
+            "index": 33,
+            "text": "Okay, fine. My husband hasn't been the same since he lost that election to my father. It hurt me to see my family so bitterly divided.",
+            "reward_keys": [0, 6],
+            "responses": []
+        },
+        {
+            "index": 34,
+            "text": "Okay, fine. My dad has not been the same since he fell out with Eugene. I guess he never expected his own son-in-law to run against him in such a public way. Is this my fault?",
+            "reward_keys": [0, 6],
             "responses": []
         }
     ]
