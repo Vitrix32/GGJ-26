@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
+
         float camHeight = Camera.main.orthographicSize;
         float bgTop = backgroundImage.bounds.max.y;
         float bgBottom = backgroundImage.bounds.min.y;
