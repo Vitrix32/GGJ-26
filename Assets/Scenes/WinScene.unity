@@ -425,12 +425,37 @@ MonoBehaviour:
   Eugene: {fileID: 0}
   Mark: {fileID: 0}
   dialogues:
-  - line: Goodbye
-    who: 1
-  - line: We're gonna be unmasked now
+  - line: "Eugene, I need to apologize. I\u2019ve been treating you unfairly, and
+      I\u2019m sorry. I heard some gossip about you and jumped to conclusions, and
+      that\u2019s not right."
+    who: 4
+  - line: "Thank you. I appreciate your apology. Truth be told, I haven\u2019t been
+      kind to you either, and I\u2019m sorry. I should have been more understanding
+      and explained what\u2019s going on instead of being combative."
     who: 2
-  - line: Thanks for fixing our problems
+  - line: "I\u2019m glad we cleared things up!"
+    who: 4
+  - line: "Dad, Eugene, thank you for resolving this. I thought this whole situation
+      was my fault, so I\u2019m glad you\u2019re friends again!"
     who: 3
+  - line: "How\u2019s it going, Mark, old friend? I haven\u2019t seen you in a while.
+      What have you been up to?"
+    who: 5
+  - line: "I\u2019ve been patching things over with Eugene. We had a horrible misunderstanding.
+      When you told me you heard him singing a \u2018love song\u2019 at the docks,
+      I thought he was being unfaithful to Claire, and it almost ruined our friendship."
+    who: 4
+  - line: "Tilde, you and Mark are old friends? I thought you didn\u2019t like him
+      - you said you\u2019ve \u2018never trusted career politicians.\u2019"
+    who: 1
+  - line: "Oh my! I guess I\u2019ve lost sight of the impact my words can have. I\u2019m
+      sorry, Mark. I never meant to hurt your relationship with Eugene, and I\u2019m
+      sorry I said those things about you."
+    who: 5
+  - line: "Amanda, are you ready to go? I\u2019m looking forward to getting to know
+      you better!\u201D Amanda: \u201COf course! Thank you for reaching out - I\u2019m
+      glad we get to spend some time together!"
+    who: 1
 --- !u!4 &272091848
 Transform:
   m_ObjectHideFlags: 0
