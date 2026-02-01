@@ -90,7 +90,7 @@ public class DialogueFetcher : MonoBehaviour
     [SerializeField]
     private TextAsset jsonFile;
     private DialogueData dialogueData;
-    private HashSet<int> unlockedKeys;
+    public HashSet<int> unlockedKeys;
 
 
     private void Start()

@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.UIElements.Experimental;
-
+using UnityEngine.SceneManagement;
 public class Dialogue {
     public string text;
     public int justification; //0 = left (ghost) 1 = right (player)
@@ -92,7 +93,14 @@ public class DialogueOptionsController : MonoBehaviour
         1000).OnCompleted(() => {
             dialogueFinished?.Invoke();
             root.style.display = DisplayStyle.None;
-            
+            HashSet<int> unlockedKeys = DialogueFetcher.Instance.unlockedKeys;
+            if (unlockedKeys.Contains(100) && unlockedKeys.Contains(101) && unlockedKeys.Contains(102) && unlockedKeys.Contains(103) && unlockedKeys.Contains(104))
+            {
+                Debug.Log("All keys collected!");
+                SceneManager.LoadScene("WinScene");
+
+
+            }
         });
            }
 
