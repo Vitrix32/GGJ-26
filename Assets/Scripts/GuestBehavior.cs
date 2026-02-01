@@ -38,8 +38,17 @@ public class GuestBehavior : MonoBehaviour
 
     private RandomTalk randomTalk;
 
+    public GameObject dialoguePopup;
+
+    private void Awake()
+    {
+        dialoguePopup = GameObject.Find("DialoguePopup");
+    }
+
     void Start()
     {
+        dialoguePopup.SetActive(false);
+
         randomTalk = gameObject.GetComponent<RandomTalk>();
         randomTalk.StartRandomTalking();
 
@@ -204,15 +213,16 @@ public class GuestBehavior : MonoBehaviour
         {
             yield return null;
         }
-        var camera = GameObject.Find("DialoguePopup");
-        camera.GetComponent<DialogueOptionsController>().fadeIn();
+        dialoguePopup.SetActive(true);
+        dialoguePopup.GetComponent<DialogueOptionsController>().fadeIn();
         var dialogueEntry = DialogueFetcher.Instance.FetchDialogue(GetComponent<Ghost>().Name);
-        camera.GetComponent<DialogueOptionsController>().setupDialogue(dialogueEntry);
-        camera.GetComponent<DialogueOptionsController>().dialogueFinished += ReturnFromTalking;
+        dialoguePopup.GetComponent<DialogueOptionsController>().setupDialogue(dialogueEntry);
+        dialoguePopup.GetComponent<DialogueOptionsController>().dialogueFinished += ReturnFromTalking;
     }
 
     public void ReturnFromTalking()
     {
+        dialoguePopup.SetActive(false);
         pointAndClick.isTalking = false;
         WalkCoroutine = StartCoroutine(RandomlyWalk());
         randomTalk.StartRandomTalking();
