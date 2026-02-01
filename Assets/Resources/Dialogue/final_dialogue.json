@@ -33,12 +33,12 @@
             "Ed": 13
         },
         "Tilda": {
-            "None": -1,
-            "Eugene": -1,
-            "Claire": -1,
-            "Mark": -1,
-            "Amanda": -1,
-            "Ed": -1
+            "None": 57,
+            "Eugene": 3,
+            "Claire": 3,
+            "Mark": 60,
+            "Amanda": 3,
+            "Ed": 63
         },
         "Ed": {
             "None": 0,
@@ -652,6 +652,100 @@
             "index": 56,
             "text": "The sea is a woman? That actually makes a lot of sense; I suppose an apology is in order.",
             "reward_keys": [103],
+            "responses": []
+        },
+        {
+            "index": 57,
+            "text": "Huh. It's been a while since someone's wanted to talk to me. What do you want to know?",
+            "reward_keys": [],
+            "responses": [
+                {
+                    "text": "Anything, really. What have you heard?",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 58
+                },
+                {
+                    "text": "Not much. I'm just wandering around, acquainting myself with the good people of this fair town.",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 59
+                }
+            ]
+        },
+        {
+            "index": 58,
+            "text": "How scandalous! I would never gossip about the townsfolk.",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 59,
+            "text": "How quaint. Well, be careful who you hang around with. This town has seen a fair bit of bickering recently.",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 60,
+            "text": "I heard Eugene singing a song about his love down at the docks. But the song wasn't about his wife, Claire. I don't know why he would do such a thing...",
+            "reward_keys": [7],
+            "responses": [
+                {
+                    "text": "That's concerning.",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 61
+                },
+                {
+                    "text": "Do you remember what he said specifically?",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 62
+                }
+            ]
+        },
+        {
+            "index": 61,
+            "text": "I know!",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 62,
+            "text": "I don't, but I remember he was singing about being in love, and I'm confident it wasn't about Claire.",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 63,
+            "text": "Did you know Eugene ran for mayor? I'm proud of him. He did quite well! It's a shame that Mark beat him. Eugene is a much better candidate, and I've never trusted career politicians.",
+            "reward_keys": [0, 6],
+            "responses": [
+                {
+                    "text": "He must be a very capable young man.",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 64
+                },
+                {
+                    "text": "I didn't know Eugene was into politics.",
+                    "reveal_keys": [],
+                    "clear_keys": [],
+                    "follow_up_index": 65
+                }
+
+            ]
+        },
+        {
+            "index": 64,
+            "text": "He is! He has a very bright future ahead of him.",
+            "reward_keys": [],
+            "responses": []
+        },
+        {
+            "index": 65,
+            "text": "You and me both. I was as surprised as anyone, but he would get my vote any day.",
+            "reward_keys": [],
             "responses": []
         }
     ]
