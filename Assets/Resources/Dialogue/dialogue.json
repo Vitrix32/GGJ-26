@@ -1,17 +1,85 @@
 {
-  "dialogues": [
-    {
-      "dialogueIndex": 0,
-      "ghostName": "Eugene",
-      "prereqs": {
-        "valid_masks": ["None", "Normal", "Fish"],
-        "keys": []
-      },
-      "ghost_lines": ["Hi I'm a ghost", "Who are you?"],
-      "responses": [
-        { "text": "Answer A", "rewardedKeys": [0] },
-        { "text": "Answer B", "rewardedKeys": [1] }
-      ]
-    }
-  ]
+    "root_nodes": {
+        "Eugene": {
+            "None": 0,
+            "Claire": 1,
+            "Mark": 2,
+            "Amanda": 3,
+            "Tilda": 4,
+            "Ed": 5
+        },
+        "Claire": {
+            "None": 6,
+            "Eugene": 6,
+            "Mark": 6,
+            "Amanda": 6,
+            "Tilda": 7,
+            "Ed": 6
+        },
+        "Mark": {
+            "None": 0,
+            "Eugene": 1,
+            "Claire": 2,
+            "Amanda": 4,
+            "Tilda": 5,
+            "Ed": 6
+        },
+        "Amanda": {
+            "None": 0,
+            "Eugene": 1,
+            "Claire": 2,
+            "Mark": 3,
+            "Tilda": 5,
+            "Ed": 6
+        },
+        "Tilda": {
+            "None": 0,
+            "Eugene": 1,
+            "Claire": 2,
+            "Mark": 3,
+            "Amanda": 4,
+            "Ed": 6
+        },
+        "Ed": {
+            "None": 0,
+            "Eugene": 1,
+            "Claire": 2,
+            "Mark": 3,
+            "Amanda": 4,
+            "Tilda": 5
+        }
+    },
+    "dialogues": [
+        {
+            "index": 0,
+            "text": "Ghost Text A",
+            "reward_keys": [1, 2],
+            "responses": [
+                {
+                    "text": "Response Text A",
+                    "reveal_keys": [],
+                    "clear_keys": [20],
+                    "follow_up_index": 1
+                },
+                {
+                    "text": "Response Text B",
+                    "reveal_keys": [20],
+                    "clear_keys": [32],
+                    "follow_up_index": 43 
+                },
+                {
+                    "text": "Response Text C",
+                    "reveal_keys": [4, 6, 23],
+                    "clear_keys": [34],
+                    "follow_up_index": 23
+                }
+            ]
+        },
+        {
+            "index": 1,
+            "text": "Ghost Text B",
+            "reward_keys": [3],
+            "responses": []
+        }
+    ]
 }

@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.UIElements.Experimental;
@@ -41,20 +38,17 @@ public class DialogueOptionsController : MonoBehaviour
     }
 
 
-    public void setupDialogue(DialogueFetcher.DialogueEntry dialogueEntry)
+    public void setupDialogue(DialogueFetcher.Dialogue dialogueEntry)
     {
         GroupBox optionsList = root.Q<GroupBox>("QuestionHoldBox");
         optionsList.Clear();
-        CreateDialogueOptions(dialogueEntry.responses);
+        CreateDialogueOptions(dialogueEntry.responses.ToArray());
         dialogueIndex = -1;
         testDialogue.Clear();
         var dialogueBox = root.Q<GroupBox>("MiddleBox").Q<TemplateContainer>();
         dialogueBox.RemoveFromHierarchy();
-        for (int i = 0; i < dialogueEntry.ghost_lines.Length; i++)
-        {
-            Dialogue newDialogue = new Dialogue(dialogueEntry.ghost_lines[i], 0);
-            testDialogue.Add(newDialogue);
-        }
+        Dialogue newDialogue = new Dialogue(dialogueEntry.text, 0);
+        testDialogue.Add(newDialogue);
         CreateDialogueBox();
     }
 
@@ -111,7 +105,7 @@ public class DialogueOptionsController : MonoBehaviour
         }
 
     }
-    void CreateDialogueOptions(DialogueFetcher.Response[] responses)
+    void CreateDialogueOptions(DialogueFetcher.ResponseField[] responses)
     {
         GroupBox optionsList = root.Q<GroupBox>("QuestionHoldBox");
         for (int i = 0; i < responses.Length; i++)
@@ -119,19 +113,19 @@ public class DialogueOptionsController : MonoBehaviour
             TemplateContainer option = dialogueOptionTemplate.Instantiate();
             var optionText = option.Q<Button>("Question1");
             optionText.text = responses[i].text;
-            DialogueFetcher.Response capturedResponse = responses[i];
+            DialogueFetcher.ResponseField capturedResponse = responses[i];
             optionText.clicked += () => EvaluateDialogueOption(capturedResponse);
             optionsList.Add(option);
         }
        
     }
 
-    void EvaluateDialogueOption(DialogueFetcher.Response response)
+    void EvaluateDialogueOption(DialogueFetcher.ResponseField response)
     {
         StartCoroutine(DialogueOptionCoroutine(response));
     }
 
-    private IEnumerator DialogueOptionCoroutine(DialogueFetcher.Response response)
+    private IEnumerator DialogueOptionCoroutine(DialogueFetcher.ResponseField response)
     {
         addDialogueText(new Dialogue(response.text, 1));
         yield return new WaitForSeconds(1f);
@@ -213,11 +207,5 @@ public class DialogueOptionsController : MonoBehaviour
                 dialogueLabel.style.unityTextAlign = TextAnchor.MiddleRight;
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

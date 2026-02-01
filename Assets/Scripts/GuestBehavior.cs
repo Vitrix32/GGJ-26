@@ -206,7 +206,10 @@ public class GuestBehavior : MonoBehaviour
         }
         var camera = GameObject.Find("DialoguePopup");
         camera.GetComponent<DialogueOptionsController>().fadeIn();
-        var dialogueEntry = DialogueFetcher.Instance.FetchDialogue(GetComponent<Ghost>().Name);
+        var dialogueEntry = DialogueFetcher.Instance.FetchRootDialogue(
+            GetComponent<Ghost>().Name, 
+            GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<GhostMask>().Mask
+        );
         camera.GetComponent<DialogueOptionsController>().setupDialogue(dialogueEntry);
         camera.GetComponent<DialogueOptionsController>().dialogueFinished += ReturnFromTalking;
     }
