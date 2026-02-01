@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,8 @@ public class Notification : MonoBehaviour
     {
         notificationImage = GetComponent<Image>();
         notificationImage.color = new Vector4(255,255,255, 0);
+        var dialogueController = GameObject.Find("DialogueController").GetComponent<DialogueFetcher>();
+        dialogueController.dialogueReward += SetTransparencyFull;
     }
 
     // Update is called once per frame
