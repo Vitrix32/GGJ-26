@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class DialogueFetcher : MonoBehaviour
 {
+
+    public event Action dialogueReward;
     [Serializable]
     private class CharacterRootNodes
     {
@@ -130,6 +132,9 @@ public class DialogueFetcher : MonoBehaviour
         DialogueEntry de = dialogueData.dialogues.FirstOrDefault(e => e.index == dialogueIndex);
 
         unlockedKeys.UnionWith(de.reward_keys);
+        if (de.reward_keys.Length > 0) {
+            dialogueReward?.Invoke();
+        }
 
         Dialogue d = new Dialogue();
         d.dialogueIndex = dialogueIndex;
