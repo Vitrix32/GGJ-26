@@ -97,7 +97,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!1 &4955291962524024215
 GameObject:
@@ -5375,6 +5375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueOptions: []
   textBox: {fileID: 9093902128307580554}
+  talking: 0
 --- !u!114 &1521787344562678117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5478,7 +5479,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 989206119025486025, guid: 9ec0360e11dba354f991e7dfcb44ec5d, type: 3}
       propertyPath: m_SortingOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1906256838916565259, guid: 9ec0360e11dba354f991e7dfcb44ec5d, type: 3}
       propertyPath: m_text
@@ -5525,6 +5526,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3873242348589881157, guid: 9ec0360e11dba354f991e7dfcb44ec5d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 765.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873242348589881157, guid: 9ec0360e11dba354f991e7dfcb44ec5d, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
@@ -5538,7 +5543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7280389669564553164, guid: 9ec0360e11dba354f991e7dfcb44ec5d, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 652.9
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 7280389669564553164, guid: 9ec0360e11dba354f991e7dfcb44ec5d, type: 3}
       propertyPath: m_SizeDelta.y
