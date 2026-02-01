@@ -2,6 +2,7 @@ Shader "Unlit/Ghost"
 {
     Properties
     {
+        _Fade("Fade", Range(0,1)) = 1
         _MainTex ("Texture", 2D) = "white" {}
         _WarpIntensity ("Warp Intensity", Float) = 1.0
         _WarpSpeed ("Warp Speed", Float) = 1.0
@@ -37,6 +38,7 @@ Shader "Unlit/Ghost"
                 float4 vertex : SV_POSITION;
             };
 
+            float _Fade;
             sampler2D _MainTex;
             float _WarpIntensity;
             float _WarpSpeed;
@@ -57,6 +59,7 @@ Shader "Unlit/Ghost"
                 warpeduv.x = i.uv.x + _WarpIntensity * sin(10 * i.uv.y + _Time.y * _WarpSpeed);
                 float4 col = tex2D(_MainTex, warpeduv);
                 col.a = min(col.a, i.uv.y * i.uv.y);
+                col.a *= _Fade;
                 col.rgb += _GlowColor.rgb;
                 return col;
             }
