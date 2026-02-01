@@ -15,6 +15,9 @@ public class Notebook : MonoBehaviour
     bool cluesOpen = false;
     VisualElement notebookRoot;
     VisualElement cluesRoot;
+    Ghost.GhostName currentGhostName;
+    GhostMask.MaskType currentMaskType;
+
     public Dictionary<Ghost.GhostName, GhostMask.MaskType> ghostData = new() {
         {Ghost.GhostName.Eugene, GhostMask.MaskType.Fish},
         {Ghost.GhostName.Claire, GhostMask.MaskType.Horns},
@@ -22,6 +25,14 @@ public class Notebook : MonoBehaviour
         {Ghost.GhostName.Ed, GhostMask.MaskType.Standard},
         {Ghost.GhostName.Amanda, GhostMask.MaskType.Deer},
         {Ghost.GhostName.Tilda, GhostMask.MaskType.Peacock}
+    };
+    public Dictionary<GhostMask.MaskType, Ghost.GhostName> ghostGuesses = new() {
+        {GhostMask.MaskType.Fish, Ghost.GhostName.None},
+        {GhostMask.MaskType.Horns, Ghost.GhostName.None},
+        {GhostMask.MaskType.Lion, Ghost.GhostName.None},
+        {GhostMask.MaskType.Standard, Ghost.GhostName.None},
+        {GhostMask.MaskType.Deer, Ghost.GhostName.None},
+        {GhostMask.MaskType.Peacock, Ghost.GhostName.None}
     };
     // Start is called before the first frame update
     void Start()
@@ -35,6 +46,10 @@ public class Notebook : MonoBehaviour
         var closeButton = cluesRoot.Q<Button>("Close");
         closeButton.clicked += () => closeClues();
         notebookRoot.Q<Button>("Close").clicked += () => fadeOut();
+        cluesRoot.Q<EnumField>("UnmaskChoice").Init(Ghost.GhostName.None);
+        cluesRoot.Q<EnumField>("UnmaskChoice").RegisterValueChangedCallback(evt => {
+            ghostGuesses[currentMaskType] = (Ghost.GhostName)evt.newValue;
+        });
         notebookRoot.style.display = DisplayStyle.None;
         cluesRoot.style.display = DisplayStyle.None;
         fadeIn();
@@ -70,6 +85,8 @@ public class Notebook : MonoBehaviour
         notebookRoot.style.display = DisplayStyle.None;
         cluesRoot.style.display = DisplayStyle.Flex;
         cluesRoot.style.opacity = 1;
+        currentGhostName = ghostName;
+        currentMaskType = maskType;
         cluesRoot.SetEnabled(true);
         Label ghostNameLabel = cluesRoot.Q<Label>("Name");
         ghostNameLabel.text = maskType.ToString();
