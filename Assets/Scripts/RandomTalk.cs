@@ -53,4 +53,29 @@ public class RandomTalk : MonoBehaviour
     {
         talk = StartCoroutine(Talk());
     }
+
+    public bool talking = false;
+
+    public IEnumerator SayLine(string s)
+    {
+        Debug.Log("saying line " + s);
+        string newDialogue = s;
+        int i = 0;
+        textBox.gameObject.SetActive(true);
+        while (i < newDialogue.Length)
+        {
+            textBox.text += newDialogue[i];
+            i++;
+            yield return new WaitForSeconds(0.07f);
+            if (char.IsPunctuation(newDialogue[i - 1]))
+            {
+                yield return new WaitForSeconds(.13f);
+            }
+        }
+        yield return new WaitForSeconds(2f);
+        textBox.text = "";
+        textBox.gameObject.SetActive(false);
+        talking = false;
+        yield return null;
+    }
 }

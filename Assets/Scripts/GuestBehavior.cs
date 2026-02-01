@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public struct KeyValuePair
@@ -34,7 +35,7 @@ public class GuestBehavior : MonoBehaviour
     private GameObject player;
     private PointAndClick pointAndClick;
 
-    private Coroutine WalkCoroutine;
+    public Coroutine WalkCoroutine;
 
     private RandomTalk randomTalk;
 
@@ -51,7 +52,10 @@ public class GuestBehavior : MonoBehaviour
     {
         //dialoguePopup.SetActive(false);
         randomTalk = gameObject.GetComponent<RandomTalk>();
-        randomTalk.StartRandomTalking();
+        if (SceneManager.GetActiveScene().name != "WinScene")
+        {
+            randomTalk.StartRandomTalking();
+        }
 
         player = GameObject.Find("MainCharacter");
         pointAndClick = player.GetComponent<PointAndClick>();
@@ -61,45 +65,55 @@ public class GuestBehavior : MonoBehaviour
         mat = spriteRenderer.material;
 
         agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
-        WalkCoroutine = StartCoroutine(RandomlyWalk());
+        if (agent != null)
+        {
+            agent.updateRotation = false;
+            agent.updateUpAxis = false;
+        }
+        if (SceneManager.GetActiveScene().name != "WinScene")
+        {
+            WalkCoroutine = StartCoroutine(RandomlyWalk());
+        }
     }
 
     void Update()
     {
 
         // Use actual movement speed
-        float speed = agent.velocity.magnitude;
-
-        if (speed > 0.05f && (!pointAndClick.isTalking || pointAndClick.isTalkingTo != gameObject))
+        if (SceneManager.GetActiveScene().name != "WinScene")
         {
-            if (agent.velocity.x > 0)
+            float speed = agent.velocity.magnitude;
+
+            if (speed > 0.05f && (!pointAndClick.isTalking || pointAndClick.isTalkingTo != gameObject))
             {
-                spriteRenderer.flipX = true;
-                maskRenderer.flipX = true;
-            } else
-            {
-                spriteRenderer.flipX = false;
-                maskRenderer.flipX = false;
+                if (agent.velocity.x > 0)
+                {
+                    spriteRenderer.flipX = true;
+                    maskRenderer.flipX = true;
+                }
+                else
+                {
+                    spriteRenderer.flipX = false;
+                    maskRenderer.flipX = false;
+                }
+
+                bobTimer += Time.deltaTime * speed;
+                float bobOffset =
+                    Mathf.Sin(bobTimer * bobFrequency) *
+                    bobAmplitude *
+                    Mathf.Clamp01(speed / agent.speed);
+                spriteTransform.localPosition = startLocalPos + Vector3.up * bobOffset;
             }
-
-            bobTimer += Time.deltaTime * speed;
-            float bobOffset =
-                Mathf.Sin(bobTimer * bobFrequency) *
-                bobAmplitude *
-                Mathf.Clamp01(speed / agent.speed);
-            spriteTransform.localPosition = startLocalPos + Vector3.up * bobOffset;
-        }
-        else
-        {
-            // Smoothly return to idle position
-            bobTimer = 0f;
-            spriteTransform.localPosition = Vector3.Lerp(
-                spriteTransform.localPosition,
-                startLocalPos,
-                Time.deltaTime * idleReturnSpeed
-            );
+            else
+            {
+                // Smoothly return to idle position
+                bobTimer = 0f;
+                spriteTransform.localPosition = Vector3.Lerp(
+                    spriteTransform.localPosition,
+                    startLocalPos,
+                    Time.deltaTime * idleReturnSpeed
+                );
+            }
         }
     }
 
@@ -181,8 +195,20 @@ public class GuestBehavior : MonoBehaviour
         }
     }
 
+    public void StopWalking()
+    {
+        if (WalkCoroutine != null)
+        {
+            StopCoroutine(WalkCoroutine);
+        }
+    }
+
     private void OnMouseDown()
     {
+        if (SceneManager.GetActiveScene().name == "WinScene")
+        {
+            return;
+        }
         randomTalk.StopRandomTalking();
         agent.SetDestination(transform.position);
         if (pointAndClick.isTalking)
@@ -216,7 +242,7 @@ public class GuestBehavior : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            LoseMask();
+            //LoseMask();
         }
     }
 
@@ -260,9 +286,12 @@ public class GuestBehavior : MonoBehaviour
 
     public void LoseMask()
     {
-        agent.SetDestination(transform.position);
-        randomTalk.StopRandomTalking();
-        StopCoroutine(WalkCoroutine);
+        if (SceneManager.GetActiveScene().name != "WinScene")
+        {
+            agent.SetDestination(transform.position);
+            randomTalk.StopRandomTalking();
+            StopCoroutine(WalkCoroutine);
+        }
         StartCoroutine(MaskSequence());
     }
 
