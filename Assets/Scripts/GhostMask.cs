@@ -39,7 +39,7 @@ public class GhostMask : MonoBehaviour
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         if (newMask == MaskType.None)
         {
-            //spriteRenderer.enabled = false;
+            spriteRenderer.enabled = false;
         }
         else
         {
