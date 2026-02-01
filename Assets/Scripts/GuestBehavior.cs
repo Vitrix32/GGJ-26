@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -66,6 +66,11 @@ public class GuestBehavior : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetMouseButtonDown(1))
+        {
+            LoseMask();
+        }
+
         // Use actual movement speed
         float speed = agent.velocity.magnitude;
 
@@ -232,5 +237,81 @@ public class GuestBehavior : MonoBehaviour
         pointAndClick.isTalking = false;
         WalkCoroutine = StartCoroutine(RandomlyWalk());
         randomTalk.StartRandomTalking();
+    }
+
+    public ParticleSystem revealParticles;
+
+    [Header("Throw Settings")]
+    public float throwDistance = 2.5f;
+    public float throwDuration = 0.6f;
+    public float spinSpeed = 720f;
+
+    [Header("Bounce Illusion")]
+    public AnimationCurve bounceCurve;
+
+    [Header("Fade")]
+    public float fadeDuration = 1.2f;
+
+    public void LoseMask()
+    {
+        agent.SetDestination(transform.position);
+        randomTalk.StopRandomTalking();
+        StopCoroutine(WalkCoroutine);
+        StartCoroutine(MaskSequence());
+    }
+
+    IEnumerator MaskSequence()
+    {
+        Transform mask = maskRenderer.gameObject.transform;
+        mask.parent = null;
+
+        Vector3 startPos = mask.position;
+
+        Vector2 dir = Random.insideUnitCircle.normalized;
+        Vector3 endPos = startPos + (Vector3)(dir * throwDistance);
+
+        if (revealParticles)
+        {
+            revealParticles.transform.position = startPos;
+            revealParticles.Play();
+        }
+
+        float time = 0f;
+
+        while (time < throwDuration)
+        {
+            time += Time.deltaTime;
+            float t = time / throwDuration;
+
+            // Horizontal movement
+            mask.position = Vector3.Lerp(startPos, endPos, t);
+
+            // Fake bounce (vertical illusion)
+            float bounce = bounceCurve.Evaluate(t);
+            mask.position += Vector3.up * bounce * 0.3f;
+
+            // Spin
+            mask.Rotate(0f, 0f, spinSpeed * Time.deltaTime);
+
+            yield return null;
+        }
+
+        Destroy(mask.gameObject);
+        StartCoroutine(FadeOutCharacter());
+    }
+
+    IEnumerator FadeOutCharacter()
+    {
+        float t = 0f;
+        Color start = spriteRenderer.color;
+
+        while (t < fadeDuration)
+        {
+            t += Time.deltaTime;
+            float a = Mathf.Lerp(1f, 0f, t / fadeDuration);
+            spriteRenderer.color = new Color(start.r, start.g, start.b, a);
+            yield return null;
+        }
+        Destroy(gameObject);
     }
 }
