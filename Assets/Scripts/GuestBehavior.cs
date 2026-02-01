@@ -195,6 +195,7 @@ public class GuestBehavior : MonoBehaviour
             spriteRenderer.flipX = true;
             maskRenderer.flipX = true;
             pointAndClick.spriteRenderer.flipX = false;
+            pointAndClick.maskSpriteRenderer.flipX = false;
         }
         else
         {
@@ -202,6 +203,7 @@ public class GuestBehavior : MonoBehaviour
             spriteRenderer.flipX = false;
             maskRenderer.flipX = false;
             pointAndClick.spriteRenderer.flipX = true;
+            pointAndClick.maskSpriteRenderer.flipX = true;
         }
 
         StartCoroutine(startTalk());
