@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="GhostCard" src="project://database/Assets/Resources/Notebook/GhostCard.uxml?fileID=9197481963319205126&amp;guid=57ec7d4c31cf4204fb382bd2c5f6ba8b&amp;type=3#GhostCard" />
+    <ui:VisualElement name="NotebookBackground" style="flex-grow: 1; background-color: rgb(22, 21, 21); margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px;">
+        <ui:Label tabindex="-1" text="Notebook" parse-escape-sequences="true" display-tooltip-when-elided="true" style="align-items: center; -unity-text-align: upper-center; background-color: rgba(250, 250, 250, 0); color: rgb(233, 230, 230); font-size: 24px; -unity-font-definition: url(&quot;project://database/Assets/Scenes/NicTestScene/EduNSWACTHandPre-VariableFont_wght%20SDF.asset?fileID=11400000&amp;guid=e2b486e9a16b15e4da6ddbd3ea484ac4&amp;type=2#EduNSWACTHandPre-VariableFont_wght SDF&quot;); -unity-font-style: normal;" />
+        <ui:GroupBox name="GroupBox" style="flex-grow: 1; flex-direction: row; padding-left: 5px; padding-right: 5px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; align-items: center;">
+            <ui:Instance template="GhostCard" name="GhostCard" style="-unity-background-scale-mode: scale-to-fit; min-height: auto; height: 80%; flex-grow: 1;" />
+            <ui:Instance template="GhostCard" name="GhostCard" />
+            <ui:Instance template="GhostCard" name="GhostCard" />
+            <ui:Instance template="GhostCard" name="GhostCard" />
+            <ui:Instance template="GhostCard" name="GhostCard" />
+            <ui:Instance template="GhostCard" name="GhostCard" />
+            <ui:Instance template="GhostCard" name="GhostCard" style="-unity-background-scale-mode: scale-to-fit; min-height: auto; height: 80%; flex-grow: 1;" />
+        </ui:GroupBox>
+        <ui:Button text="Go Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Close" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/Scenes/NicTestScene/EduNSWACTHandPre-VariableFont_wght%20SDF.asset?fileID=11400000&amp;guid=e2b486e9a16b15e4da6ddbd3ea484ac4&amp;type=2#EduNSWACTHandPre-VariableFont_wght SDF&quot;); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
+    </ui:VisualElement>
+</ui:UXML>

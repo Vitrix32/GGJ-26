@@ -38,8 +38,17 @@ public class GuestBehavior : MonoBehaviour
 
     private RandomTalk randomTalk;
 
+    public GameObject dialoguePopup;
+
+    private void Awake()
+    {
+        dialoguePopup = GameObject.Find("DialoguePopup");
+    }
+
     void Start()
     {
+        //dialoguePopup.SetActive(false);
+
         randomTalk = gameObject.GetComponent<RandomTalk>();
         randomTalk.StartRandomTalking();
 
@@ -186,6 +195,7 @@ public class GuestBehavior : MonoBehaviour
             spriteRenderer.flipX = true;
             maskRenderer.flipX = true;
             pointAndClick.spriteRenderer.flipX = false;
+            pointAndClick.maskSpriteRenderer.flipX = false;
         }
         else
         {
@@ -193,6 +203,7 @@ public class GuestBehavior : MonoBehaviour
             spriteRenderer.flipX = false;
             maskRenderer.flipX = false;
             pointAndClick.spriteRenderer.flipX = true;
+            pointAndClick.maskSpriteRenderer.flipX = true;
         }
 
         StartCoroutine(startTalk());
@@ -204,18 +215,16 @@ public class GuestBehavior : MonoBehaviour
         {
             yield return null;
         }
-        var camera = GameObject.Find("DialoguePopup");
-        camera.GetComponent<DialogueOptionsController>().fadeIn();
-        var dialogueEntry = DialogueFetcher.Instance.FetchRootDialogue(
-            GetComponent<Ghost>().Name, 
-            GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<GhostMask>().Mask
-        );
-        camera.GetComponent<DialogueOptionsController>().setupDialogue(dialogueEntry);
-        camera.GetComponent<DialogueOptionsController>().dialogueFinished += ReturnFromTalking;
+        //dialoguePopup.SetActive(true);
+        dialoguePopup.GetComponent<DialogueOptionsController>().fadeIn();
+        var dialogueEntry = DialogueFetcher.Instance.FetchDialogue(GetComponent<Ghost>().Name);
+        dialoguePopup.GetComponent<DialogueOptionsController>().setupDialogue(dialogueEntry);
+        dialoguePopup.GetComponent<DialogueOptionsController>().dialogueFinished += ReturnFromTalking;
     }
 
     public void ReturnFromTalking()
     {
+        //dialoguePopup.SetActive(false);
         pointAndClick.isTalking = false;
         WalkCoroutine = StartCoroutine(RandomlyWalk());
         randomTalk.StartRandomTalking();

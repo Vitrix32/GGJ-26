@@ -34,6 +34,7 @@ public class DialogueOptionsController : MonoBehaviour
     {
         root = dialogueComponent.rootVisualElement;
         root.style.opacity = 0;
+        root.style.display = DisplayStyle.None;
         CreateDialogueBox();
     }
 
@@ -67,7 +68,8 @@ public class DialogueOptionsController : MonoBehaviour
         },
         3000);
 
-        root.SetEnabled(true); 
+        root.SetEnabled(true);
+        root.style.display = DisplayStyle.Flex;
     }
 
     public void fadeOut()
@@ -86,6 +88,7 @@ public class DialogueOptionsController : MonoBehaviour
         },
         1000);
         dialogueFinished?.Invoke();
+        root.style.display = DisplayStyle.None;
         root.SetEnabled(false);    }
 
     void addDialogueText(Dialogue text)
@@ -136,6 +139,7 @@ public class DialogueOptionsController : MonoBehaviour
     {
         TemplateContainer dialogueBox = dialogueBoxTemplate.Instantiate();
         //dialogueBox.flexGrow = 7;
+        print("There is a dialog box being made here >:()");
         dialogueBox.style.height = Screen.height * 0.7f; // 70% of screen height
         // Update on screen resize
         root.RegisterCallback<GeometryChangedEvent>(evt => {
@@ -154,6 +158,7 @@ public class DialogueOptionsController : MonoBehaviour
         root.SetEnabled(false);
         while (dialogueIndex < testDialogue.Count-1) {
         var dialogueLabel = root.Q<Label>("Dialogue");
+        print(dialogueIndex);
         dialogueIndex += 1;
         dialogueLabel.text = testDialogue[dialogueIndex].text;
         //dialogueLabel.MarkDirtyRepaint();
